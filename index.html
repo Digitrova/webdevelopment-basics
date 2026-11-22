@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Student portfolio starter — HTML, CSS aur JavaScript se bani pehli website.">
-  <title>Portfolio Starter — Meri Pehli Website</title>
+  <title>Web Development — Website Banane Ka Complete Starter</title>
 
   <!-- CSS ko HTML se alag file mein rakha gaya hai (good practice) -->
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/learning.css">
 
   <!-- Font CDN: Outfit (free, Google Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,8 +22,8 @@
     <div class="container header-inner">
 
       <a href="#home" class="logo">
-        <span class="logo-mark">AK</span>
-        <span class="logo-text">Ali Khan</span>
+        <span class="logo-mark">WD</span>
+        <span class="logo-text">Web Development</span>
       </a>
 
       <!-- Mobile menu button: sirf chhote screen par dikhega -->
@@ -35,6 +36,7 @@
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
+        <a href="learning.html">Learning</a>
         <button class="theme-btn" id="themeBtn" title="Theme badlein">Theme</button>
       </nav>
 
@@ -46,14 +48,16 @@
     <!-- ============ HERO ============ -->
     <section class="hero" id="home">
       <div class="container hero-inner">
-        <p class="eyebrow">Front-End Developer</p>
-        <h1>Main websites banata hoon jo <span class="hl">har phone par</span> theek chalti hain.</h1>
+        <p class="eyebrow">Web Development</p>
+        <h1>Modern websites jo <span class="hl">har screen par</span> behtareen lagti hain.</h1>
         <p class="lead">
-          Yeh ek starter template hai — apna naam, apna text aur apne projects yahan daalein.
-          Har section ka comment dekh lein, taake aapko pata ho ke kahan badalna hai.
+          Yeh web development ka starter project hai — HTML, CSS aur JavaScript se bani responsive website.
+          Neeche kaam ke samples dekhein, ya <strong>Seekhne ka raasta</strong> kholein aur zero se complete
+          learning path follow karein.
         </p>
         <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">Mere Projects dekhein</a>
+          <a href="#projects" class="btn btn-primary">Kaam ke samples dekhein</a>
+          <a href="learning.html" class="btn btn-outline">Seekhne ka raasta</a>
           <a href="#contact" class="btn btn-outline">Rabta karein</a>
         </div>
       </div>
@@ -62,30 +66,34 @@
     <!-- ============ ABOUT ============ -->
     <section class="section" id="about">
       <div class="container">
-        <h2 class="section-title">Mere baare mein</h2>
-        <p class="section-sub">Yahan 2-3 lines mein likhein ke aap kaun hain aur aap kya karte hain.</p>
+        <h2 class="section-title">Web development kya hai</h2>
+        <p class="section-sub">Web development ka matlab hai websites banana — sirf design nahi, balki woh website jo asli browser mein khule, tez chale aur har device par theek dikhaye.</p>
 
         <div class="about-grid">
           <div class="about-text">
             <p>
-              Main ek junior front-end developer hoon. Mujhe HTML, CSS aur JavaScript
-              aata hai aur main responsive websites banata hoon — jo mobile, tablet
-              aur laptop sab par achi lagti hain.
+              Web development teen cheezon ka sangam hai: <strong>HTML</strong> (structure),
+              <strong>CSS</strong> (shakal aur layout) aur <strong>JavaScript</strong> (website ka kaam).
+              In teenon ke saath ek website ban jaati hai jo mobile, tablet aur laptop
+              sab par achi lagti hai.
             </p>
             <p>
-              <strong>Ise badal dein:</strong> yeh paragraph aapka apna introduction hai.
-              2-3 lines kaafi hain — zyada nahi.
+              <strong>Ise badal dein:</strong> yeh paragraph aapka apna introduction hai —
+              aap kaun hain, kya karte hain aur kis type ki websites banate hain.
+              2-3 lines kaafi hain, zyada nahi.
             </p>
           </div>
 
           <div class="skills">
-            <h3>Skills</h3>
+            <h3>Core skills</h3>
             <ul class="skill-list">
               <li>HTML5 &amp; Semantic Markup</li>
               <li>CSS3, Flexbox &amp; Grid</li>
               <li>JavaScript (ES6+)</li>
               <li>Responsive Design</li>
               <li>Git &amp; GitHub</li>
+              <li>REST API &amp; JSON</li>
+              <li>SEO &amp; Performance</li>
             </ul>
           </div>
         </div>
@@ -95,16 +103,16 @@
     <!-- ============ PROJECTS ============ -->
     <section class="section section-alt" id="projects">
       <div class="container">
-        <h2 class="section-title">Mere Projects</h2>
-        <p class="section-sub">Har card mein project ka naam, chhota sa description aur link.</p>
+        <h2 class="section-title">Kaam ke samples</h2>
+        <p class="section-sub">Har card mein project ka naam, chhota sa description aur live link. Apne asli projects se badal dein.</p>
 
         <div class="project-grid">
 
           <article class="project-card">
             <div class="project-thumb thumb-1" aria-hidden="true"><span>01</span></div>
             <div class="project-body">
-              <h3>Project ek ka naam</h3>
-              <p>Yahan 1-2 lines mein likhein ke yeh project kya karta hai.</p>
+              <h3>Responsive Landing Page</h3>
+              <p>Ek responsive landing page — hero section, features aur working contact form.</p>
               <div class="project-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
               <a href="#" class="link-arrow">Live demo dekhein &rarr;</a>
             </div>
@@ -113,8 +121,8 @@
           <article class="project-card">
             <div class="project-thumb thumb-2" aria-hidden="true"><span>02</span></div>
             <div class="project-body">
-              <h3>Doosra project</h3>
-              <p>Har card ka layout bilkul yahi rahega — sirf content badlein.</p>
+              <h3>Dashboard UI</h3>
+              <p>Admin dashboard ka UI — sidebar, stat cards aur data table, poori tarah responsive.</p>
               <div class="project-tags"><span>HTML</span><span>CSS</span></div>
               <a href="#" class="link-arrow">Live demo dekhein &rarr;</a>
             </div>
@@ -123,9 +131,9 @@
           <article class="project-card">
             <div class="project-thumb thumb-3" aria-hidden="true"><span>03</span></div>
             <div class="project-body">
-              <h3>Teesra project</h3>
-              <p>Grid layout ki wajah se teen cards ek line mein aa gaye.</p>
-              <div class="project-tags"><span>React</span><span>Tailwind</span></div>
+              <h3>Product Catalog</h3>
+              <p>Product grid with filters, sorting aur cart drawer — live API se data.</p>
+              <div class="project-tags"><span>React</span><span>Tailwind</span><span>API</span></div>
               <a href="#" class="link-arrow">Live demo dekhein &rarr;</a>
             </div>
           </article>
@@ -141,10 +149,10 @@
           <h2 class="section-title">Rabta karein</h2>
           <p class="section-sub">Form bhar ke bhejein — abhi sirf console mein dikhega. asli setup ke liye "Contact Form" section dekhein.</p>
           <ul class="contact-list">
-            <li><span>Email</span><a href="mailto:ali@example.com">ali@example.com</a></li>
+            <li><span>Email</span><a href="mailto:hello@yourdomain.com">hello@yourdomain.com</a></li>
             <li><span>Phone</span><a href="tel:+923001234567">+92 300 1234567</a></li>
-            <li><span>LinkedIn</span><a href="#">linkedin.com/in/username</a></li>
-            <li><span>GitHub</span><a href="#">github.com/username</a></li>
+            <li><span>LinkedIn</span><a href="#">linkedin.com/in/webdevelopment</a></li>
+            <li><span>GitHub</span><a href="#">github.com/webdevelopment</a></li>
           </ul>
         </div>
 
@@ -173,11 +181,51 @@
 
   </main>
 
+  <!-- ============ LEARNING OPTIONS ============ -->
+  <section class="lp-section" id="learning">
+    <div class="container">
+      <div class="lp-title"><span class="num">★</span><h2>Seekhne ke options</h2></div>
+      <p class="lp-sub">
+        Yeh website sirf ek starter template nahi — iske saath poora learning path bhi aata hai.
+        Jo aap seekhna chahte hain, wahan se shuru karein.
+      </p>
+
+      <div class="learn-cards">
+
+        <a class="learn-card" href="learning.html">
+          <span class="lic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+          <h3>Learning Path</h3>
+          <p>12 website types, 7-din plan, 12-week curriculum, 6 projects aur 10 common ghaltiyan — saath mein apna progress checklist.</p>
+          <span class="go">Learning path kholein &rarr;</span>
+        </a>
+
+        <a class="learn-card" href="course-guide.html">
+          <span class="lic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span>
+          <h3>Poori Visual Guide</h3>
+          <p>Types ka detailed map, website banane ke 10 steps, React phase aur har code sample ke saath — illustrations wala.</p>
+          <span class="go">Guide kholein &rarr;</span>
+        </a>
+
+        <a class="learn-card" href="deploy-guide.html">
+          <span class="lic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.2L21 10l-5.4 4 1.6 6.8L12 16.9 6.8 20.8 8.4 14 3 10l6.6-1.8z"/></svg></span>
+          <h3>Deploy Guide</h3>
+          <p>GitHub se Vercel tak live karna — commands, domain, DNS, aur har common error ka solution.</p>
+          <span class="go">Deploy guide kholein &rarr;</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> Ali Khan — sab haqooq mehfooz.</p>
-      <p class="footer-note">Is template ko apni website ka banayein — <code>index.html</code>, <code>css/style.css</code> aur <code>js/main.js</code> sirf teen files hain.</p>
+      <p>&copy; <span id="year"></span> Web Development — sab haqooq mehfooz.</p>
+      <p class="footer-note">
+        Pages: <a href="learning.html">Learning Path</a> · <a href="course-guide.html">Visual Guide</a> ·
+        <a href="deploy-guide.html">Deploy Guide</a>
+        <br>Is template ko apni website ka banayein — <code>index.html</code>, <code>css/style.css</code> aur <code>js/main.js</code> sirf teen files hain.
+      </p>
     </div>
   </footer>
 

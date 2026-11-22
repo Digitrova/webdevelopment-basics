@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Development — Complete Setup Guide (Types + Step-by-Step)</title>
+<meta name="description" content="Website banane ka poora curriculum: pehle website ke types, phir setup aur step-by-step banane ka tareeqa. Roman Urdu + English summary.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f5f0; --ink:#14171e; --body:#3a4256; --muted:#7c7a72;
+  --line:#e9e3d6; --card:#ffffff; --line-soft:#efeade;
+  --primary:#2f6f5e; --primary-2:#4a8e7c; --primary-soft:rgba(47,111,94,.08);
+  --accent:#c97b3f; --accent-soft:rgba(201,123,63,.10);
+  --code-bg:#1f2428; --code-ink:#e6e3dc;
+  --shadow-s:0 2px 8px rgba(0,0,0,.04);
+  --shadow-m:0 4px 16px -2px rgba(0,0,0,.06);
+  --shadow-l:0 12px 34px -8px rgba(20,23,30,.12);
+  --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:86px}
+body{
+  margin:0; background:var(--paper); color:var(--body);
+  font-family:'Outfit',sans-serif; font-size:16.5px; line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(900px 520px at 88% -8%, rgba(201,123,63,.07), transparent 62%),
+    radial-gradient(760px 480px at -6% 12%, rgba(47,111,94,.07), transparent 60%);
+  background-attachment:fixed;
+}
+h1,h2,h3,h4{color:var(--ink); line-height:1.18; margin:0}
+h1,h2{font-family:'DM Serif Display',serif; font-weight:400; letter-spacing:-.005em}
+h3,h4{font-weight:600}
+p{margin:0 0 12px}
+a{color:var(--primary)}
+strong{color:var(--ink); font-weight:600}
+code{font-family:'JetBrains Mono',monospace; font-size:.88em; background:var(--primary-soft); color:var(--primary); padding:.12em .42em; border-radius:5px; border:1px solid rgba(47,111,94,.14)}
+ul{margin:0 0 12px; padding-left:20px}
+li{margin-bottom:5px}
+.wrap{max-width:1080px; margin:0 auto; padding:0 24px}
+.narrow{max-width:780px}
+
+/* ---------- top bar ---------- */
+.topbar{position:sticky; top:0; z-index:60; background:rgba(247,245,240,.88); backdrop-filter:blur(14px); border-bottom:1px solid var(--line)}
+.topbar-inner{display:flex; align-items:center; gap:18px; height:62px}
+.brand{display:flex; align-items:center; gap:10px; font-weight:600; color:var(--ink); font-size:15.5px; letter-spacing:-.01em; white-space:nowrap}
+.brand-mark{width:30px;height:30px;border-radius:9px;background:var(--primary);display:grid;place-items:center;color:#fff;flex:none}
+.brand small{display:block; font-weight:400; font-size:11.5px; color:var(--muted); letter-spacing:.02em}
+.navlinks{display:flex; gap:2px; margin-left:auto; overflow-x:auto; scrollbar-width:none}
+.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{color:var(--body); text-decoration:none; font-size:14px; padding:7px 11px; border-radius:8px; white-space:nowrap; transition:background .18s,color .18s}
+.navlinks a:hover{background:var(--primary-soft); color:var(--primary)}
+.navlinks a.active{background:var(--primary); color:#fff}
+.burger{display:none; width:40px; height:40px; flex:none; margin-left:auto;
+  border:1px solid var(--line); background:var(--card); border-radius:10px; cursor:pointer;
+  flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:0}
+.burger span{display:block; width:17px; height:2px; background:var(--ink); border-radius:2px; transition:transform .25s, opacity .2s}
+.burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.progress{height:2px; background:transparent}
+.progress i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--primary),var(--accent)); transition:width .12s linear}
+
+/* ---------- hero ---------- */
+.hero{padding:60px 0 40px; border-bottom:1px solid var(--line)}
+.kicker{display:inline-flex; align-items:center; gap:8px; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--accent); background:var(--accent-soft); border:1px solid rgba(201,123,63,.22); padding:6px 13px; border-radius:99px}
+.hero h1{font-size:clamp(34px,5.2vw,54px); margin:20px 0 0; max-width:19ch}
+.hero h1 em{font-style:normal; color:var(--primary)}
+.lead{font-size:19px; max-width:62ch; margin-top:16px; color:var(--body)}
+.statstrip{display:flex; flex-wrap:wrap; gap:0; margin-top:30px; border:1px solid var(--line); background:var(--card); border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow-s)}
+.statstrip div{padding:16px 22px; border-right:1px solid var(--line); flex:1 1 190px}
+.statstrip div:last-child{border-right:0}
+.statstrip b{display:block; font-size:25px; color:var(--primary); font-weight:600; letter-spacing:-.02em}
+.statstrip span{font-size:13px; color:var(--muted)}
+.cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:26px}
+.btn{display:inline-flex; align-items:center; gap:9px; text-decoration:none; font-weight:600; font-size:15px; padding:12px 20px; border-radius:11px; transition:transform .18s, box-shadow .18s, background .18s; border:1px solid transparent}
+.btn-1{background:var(--primary); color:#fff; box-shadow:var(--shadow-m)}
+.btn-2{background:var(--card); color:var(--ink); border-color:var(--line)}
+.btn:hover{transform:translateY(-2px); box-shadow:var(--shadow-l)}
+.btn svg{flex:none}
+
+/* ---------- sections ---------- */
+section{padding:56px 0; border-bottom:1px solid var(--line)}
+.sec-head{display:grid; grid-template-columns:1fr; gap:14px; margin-bottom:30px}
+.sec-num{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--accent); letter-spacing:.12em; font-weight:500}
+.sec-head h2{font-size:clamp(27px,3.4vw,36px)}
+.sec-head .sub{font-size:17px; max-width:70ch; margin:0}
+.en-summary{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:16px 20px; box-shadow:var(--shadow-s); margin:0 0 28px; max-width:none}
+.en-summary b{display:block; font-size:11.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:5px}
+.en-summary p{margin:0; font-size:15.5px; color:var(--body)}
+.note{background:var(--primary-soft); border:1px solid rgba(47,111,94,.16); border-radius:12px; padding:14px 18px; font-size:15px}
+.note b{color:var(--primary)}
+.warn{background:var(--accent-soft); border:1px solid rgba(201,123,63,.2); border-radius:12px; padding:14px 18px; font-size:15px}
+.warn b{color:#a5622c}
+
+/* ---------- type map ---------- */
+.map{background:var(--card); border:1px solid var(--line); border-radius:20px; padding:26px; box-shadow:var(--shadow-m)}
+.map-track{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; position:relative; margin-top:6px}
+.map-track::before{content:""; position:absolute; left:0; right:0; top:-16px; height:6px; border-radius:99px; background:linear-gradient(90deg,#9fc9ba,var(--primary-2),var(--primary),var(--accent))}
+.zone h3{font-size:16px; display:flex; align-items:center; gap:8px; margin-bottom:3px}
+.zone h3 span.n{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); font-weight:400}
+.zone p{font-size:13.5px; color:var(--muted); margin:0 0 12px; min-height:38px}
+.zone ul{list-style:none; padding:0; margin:0}
+.zone li{font-size:13.5px; color:var(--body); padding:7px 10px; background:#fbfaf7; border:1px solid var(--line-soft); border-radius:9px; margin-bottom:6px}
+.map-axis{display:flex; justify-content:space-between; font-size:12px; color:var(--muted); margin-top:16px; padding-top:14px; border-top:1px dashed var(--line)}
+
+/* ---------- cards ---------- */
+.card-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+.type-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:20px; box-shadow:var(--shadow-s); transition:transform .2s, box-shadow .2s; display:flex; flex-direction:column}
+.type-card:hover{transform:translateY(-3px); box-shadow:var(--shadow-m)}
+.tc-head{display:flex; align-items:flex-start; gap:12px; margin-bottom:10px}
+.tc-ic{width:38px;height:38px;border-radius:11px;background:var(--primary-soft); color:var(--primary); display:grid; place-items:center; flex:none}
+.tc-head h3{font-size:17px; flex:1}
+.tc-desc{font-size:14.5px; margin:0 0 12px}
+.pill{font-size:11px; font-weight:600; padding:4px 9px; border-radius:99px; letter-spacing:.03em; white-space:nowrap; margin-top:4px}
+.p-easy{background:rgba(47,111,94,.11); color:var(--primary); border:1px solid rgba(47,111,94,.2)}
+.p-med{background:rgba(201,123,63,.12); color:#a5622c; border:1px solid rgba(201,123,63,.22)}
+.p-hard{background:rgba(155,59,59,.10); color:#8f4040; border:1px solid rgba(155,59,59,.18)}
+.kv{display:grid; grid-template-columns:108px 1fr; border-top:1px dashed var(--line); margin-top:auto}
+.kv > div{display:contents}
+.kv dt,.kv dd{margin:0; padding:7px 0; font-size:13.5px; border-bottom:1px dashed var(--line)}
+.kv dt{color:var(--muted)}
+.kv dd{color:var(--ink); font-weight:500}
+
+/* ---------- table ---------- */
+.tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--r); background:var(--card); box-shadow:var(--shadow-s)}
+table{width:100%; border-collapse:collapse; font-size:14px; min-width:760px}
+th,td{padding:12px 14px; text-align:left; border-bottom:1px solid var(--line-soft); vertical-align:top}
+th{font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); font-weight:600; background:#fbfaf7; white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fcfbf8}
+td b{color:var(--ink)}
+.dots{display:inline-flex; gap:3px; vertical-align:middle}
+.dots i{width:7px;height:7px;border-radius:50%; background:var(--line); display:block}
+.dots i.on{background:var(--primary)}
+.hard i.on{background:#a5622c}
+
+/* ---------- flow ---------- */
+.flow{display:flex; flex-direction:column; align-items:center; gap:0}
+.flow-node{width:100%; max-width:620px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:15px 20px; box-shadow:var(--shadow-s); display:flex; gap:14px; align-items:flex-start}
+.flow-node .fn-ic{width:34px;height:34px;border-radius:10px;background:var(--primary-soft);color:var(--primary);display:grid;place-items:center;flex:none}
+.flow-node h4{font-size:15.5px; margin-bottom:3px}
+.flow-node p{font-size:13.5px; margin:0; color:var(--muted)}
+.flow-arrow{display:flex; align-items:center; gap:12px; color:var(--muted); font-size:12px; font-family:'JetBrains Mono',monospace; padding:4px 0}
+.flow-arrow::before{content:""; width:2px; height:22px; background:var(--line); display:block}
+
+/* ---------- timeline ---------- */
+.timeline{position:relative; padding-left:4px}
+.timeline::before{content:""; position:absolute; left:24px; top:10px; bottom:10px; width:2px; background:linear-gradient(180deg,var(--primary),var(--accent))}
+.step{position:relative; padding-left:62px; margin-bottom:26px}
+.step:last-child{margin-bottom:0}
+.step-ic{position:absolute; left:4px; top:0; width:42px; height:42px; border-radius:50%; background:var(--card); border:2px solid var(--primary); display:grid; place-items:center; color:var(--primary); font-weight:600; font-family:'JetBrains Mono',monospace; font-size:13px}
+.step h3{font-size:17.5px; margin-bottom:4px}
+.step .step-sub{font-size:12.5px; color:var(--muted); font-family:'JetBrains Mono',monospace; margin-bottom:8px}
+.step p{font-size:15px}
+.step ul{font-size:14.5px}
+
+/* ---------- code ---------- */
+pre{background:var(--code-bg); color:var(--code-ink); border-radius:14px; padding:17px 19px; overflow-x:auto; font-family:'JetBrains Mono',monospace; font-size:13.2px; line-height:1.72; margin:0 0 14px; border:1px solid #2c3238}
+pre .c{color:#8b9ba8} pre .k{color:#e0a668} pre .s{color:#9fc9ba} pre .t{color:#c9a2d8} pre .p{color:#7f8c98}
+.code-cap{font-size:12.5px; color:var(--muted); margin:-8px 0 14px; font-family:'JetBrains Mono',monospace}
+
+/* ---------- checklist ---------- */
+.checks{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+.check{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start; box-shadow:var(--shadow-s)}
+.check .box{width:22px;height:22px;border-radius:6px;border:2px solid var(--primary-2); flex:none; display:grid;place-items:center; color:var(--primary)}
+.check h4{font-size:14.5px; margin-bottom:2px}
+.check p{font-size:13px; color:var(--muted); margin:0}
+
+/* ---------- bench ---------- */
+.bench-row{display:grid; grid-template-columns:150px 1fr 64px; gap:14px; align-items:center; padding:8px 0; border-bottom:1px dashed var(--line)}
+.bench-row:last-child{border-bottom:0}
+.bench-row .label{font-size:14px; color:var(--ink); font-weight:500}
+.bar-bg{height:18px; background:var(--line-soft); border-radius:6px; overflow:hidden}
+.bar-fill{height:100%; background:linear-gradient(90deg,var(--primary),#4a8e7c); border-radius:6px}
+.bench-row .val{font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; text-align:right}
+
+/* ---------- split ---------- */
+.split{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+.panel{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:20px; box-shadow:var(--shadow-s); min-width:0}
+.split > *{min-width:0}
+.card-grid > *{min-width:0}
+.panel pre{max-width:100%}
+.panel h4{font-size:15px; margin-bottom:10px; display:flex; align-items:center; gap:8px}
+.panel.g{background:linear-gradient(180deg,rgba(47,111,94,.05),transparent)}
+
+/* ---------- module cards ---------- */
+.mod{display:grid; grid-template-columns:92px 1fr; gap:18px; background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:14px; box-shadow:var(--shadow-s)}
+.mod-w{background:var(--primary-soft); border:1px solid rgba(47,111,94,.16); border-radius:12px; padding:10px; text-align:center; align-self:start}
+.mod-w b{display:block; font-size:19px; color:var(--primary); font-weight:600}
+.mod-w span{font-size:11.5px; color:var(--muted)}
+.mod h3{font-size:17px; margin-bottom:3px}
+.mod .dur{font-size:12px; color:var(--muted); font-family:'JetBrains Mono',monospace}
+.mod p{font-size:14.5px; margin:8px 0}
+.mod .topics{display:flex; flex-wrap:wrap; gap:6px}
+.mod .topics span{font-size:12px; background:#fbfaf7; border:1px solid var(--line-soft); color:var(--body); padding:3px 9px; border-radius:7px}
+.mod .out{margin-top:9px; font-size:13.5px; color:var(--muted)}
+.mod .out b{color:var(--ink)}
+
+/* ---------- project ladder ---------- */
+.ladder{display:grid; gap:12px}
+.rung{display:grid; grid-template-columns:56px 1fr 150px; gap:18px; align-items:center; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:15px 18px; box-shadow:var(--shadow-s)}
+.rung .rn{font-family:'JetBrains Mono',monospace; font-size:13px; color:#fff; background:var(--primary); width:34px;height:34px;border-radius:10px; display:grid;place-items:center}
+.rung h4{font-size:15.5px}
+.rung p{font-size:13.5px; color:var(--muted); margin:3px 0 0}
+.rung .meta{font-size:12.5px; color:var(--muted); font-family:'JetBrains Mono',monospace; text-align:right}
+
+/* ---------- footer ---------- */
+footer{padding:44px 0 60px}
+.foot-grid{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:28px}
+footer h4{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:10px}
+footer a{color:var(--body); text-decoration:none; font-size:14px; display:block; padding:3px 0}
+footer a:hover{color:var(--primary)}
+.foot-note{font-size:13.5px; color:var(--muted); max-width:38ch}
+
+@media (max-width:900px){
+  .card-grid,.split,.checks,.foot-grid{grid-template-columns:1fr}
+  .map-track{grid-template-columns:1fr 1fr}
+  .rung{grid-template-columns:44px 1fr; }
+  .rung .meta{grid-column:2; text-align:left}
+  .mod{grid-template-columns:1fr}
+  .mod-w{display:flex; gap:10px; align-items:baseline; justify-content:flex-start; text-align:left}
+}
+@media (max-width:620px){
+  body{font-size:15.5px}
+  .map-track{grid-template-columns:1fr}
+  .hero{padding:38px 0 30px}
+  .statstrip div{border-right:0; border-bottom:1px solid var(--line); flex:1 1 100%}
+  .statstrip div:last-child{border-bottom:0}
+  .bench-row{grid-template-columns:96px 1fr 52px; gap:9px}
+  .wrap{padding:0 16px}
+  .navlinks{display:none}
+  .navlinks.open{display:flex; position:absolute; top:62px; left:0; right:0; background:var(--card); border-bottom:1px solid var(--line); flex-direction:column; padding:10px; box-shadow:var(--shadow-m)}
+  .navlinks.open a{font-size:15px; padding:10px 12px}
+  .burger{display:flex}
+}
+@media print{
+  .topbar{display:none}
+  body{background:#fff; font-size:11pt}
+  section{page-break-inside:avoid; padding:22px 0}
+  .type-card,.panel,.mod,.rung,.flow-node{box-shadow:none}
+  pre{background:#f2f0ea; color:#14171e; border:1px solid #ddd}
+  .en-summary{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar no-print">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </span>
+      <span>Website Setup Guide<small>Types → Setup → Build → Deploy</small></span>
+    </div>
+    <nav class="navlinks" id="nav">
+      <a href="#types">Types</a>
+      <a href="#setup">Setup</a>
+      <a href="#build">Banane ka tareeqa</a>
+      <a href="#recipe">7-din plan</a>
+      <a href="#roadmap">Curriculum</a>
+      <a href="#react">React</a>
+      <a href="#projects">Projects</a>
+      <a href="#mistakes">Ghaltiyan</a>
+      <a href="#resources">Resources</a>
+    </nav>
+    <button class="burger no-print" id="burger" aria-label="Menu kholein" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+</div>
+
+<!-- ================= HERO ================= -->
+<div class="wrap hero">
+  <span class="kicker">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2l2.4 6.2L21 10l-5.4 4 1.6 6.8L12 16.9 6.8 20.8 8.4 14 3 10l6.6-1.8z"/></svg>
+    Complete Website Course · Beginner se React tak
+  </span>
+  <h1>Pehle <em>website ke types</em> samjho, phir website <em>banao</em>.</h1>
+  <p class="lead">Yeh poora setup hai ek student ko zero se website banane tak ka. Ismein 12 website types ka comparison, poora environment setup (VS Code, Git, Node, hosting), website banane ka 10-step tareeqa, 7-din ka practical plan, 12-week curriculum aur 6 practice projects — sab Roman Urdu mein, har section ke saath English summary ke saath.</p>
+
+  <div class="statstrip">
+    <div><b>12</b><span>Website types — kaunsa kis kaam ka</span></div>
+    <div><b>10</b><span>Build steps — idea se live domain tak</span></div>
+    <div><b>12 wk</b><span>Curriculum — basics se React tak</span></div>
+    <div><b>6</b><span>Projects — portfolio se dashboard tak</span></div>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn btn-1" href="#types">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v7H4zM13 4h7v4h-7zM13 11h7v9h-7zM4 14h7v6H4z"/></svg>
+      Types se shuru karein
+    </a>
+    <a class="btn btn-2" href="#setup">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6z"/></svg>
+      Setup skip karein
+    </a>
+  </div>
+</div>
+
+<!-- ================= PART 1: TYPES ================= -->
+<section id="types">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PART 01 / PEHLE —</span>
+      <h2>Website ke Types</h2>
+      <p class="sub">Sab se pehla kaam: yeh samajhna ke website <em>kis</em> tarah ki hai. Website ka type hi batata hai ke us mein backend chahiye ya nahi, kitna kaam hai, aur student ko kya seekhna parega. Student ko pehle yahan stop karein — bina type samjhe koi website banana ulta hai.</p>
+    </div>
+
+    <div class="en-summary">
+      <b>English summary</b>
+      <p>A website's <strong>type</strong> determines everything downstream: whether it needs a database, which stack to learn, how much time it takes and what it costs to host. The 12 types below are ordered by complexity, from a plain static page to a full multi-vendor platform. Pick the type first, then pick the tools — never the other way round.</p>
+    </div>
+
+    <h3 style="font-size:18px;margin-bottom:6px">Website types ka map — complexity ke hisaab se</h3>
+    <p style="font-size:15px;color:var(--muted);margin-bottom:18px">Left se right complexity barhti hai. Student ko <strong>sab se left se shuru</strong> karna chahiye — har level pichle ka skill assume karta hai.</p>
+
+    <div class="map">
+      <div class="map-track">
+        <div class="zone">
+          <h3>Static / Simple <span class="n">Level 1</span></h3>
+          <p>Sirf files — koi database nahi. Browser mein hi chalti hai.</p>
+          <ul>
+            <li>Portfolio website</li>
+            <li>Landing page (one-pager)</li>
+            <li>Blog (personal)</li>
+            <li>Info / brochure site</li>
+          </ul>
+        </div>
+        <div class="zone">
+          <h3>CMS Based <span class="n">Level 2</span></h3>
+          <p>Content admin panel se edit hota hai. Code kam, content zyada.</p>
+          <ul>
+            <li>WordPress business site</li>
+            <li>Documentation / help site</li>
+            <li>School / college portal</li>
+            <li>Membership site</li>
+          </ul>
+        </div>
+        <div class="zone">
+          <h3>Transactional <span class="n">Level 3</span></h3>
+          <p>User action se data badalta hai — cart, booking, listings.</p>
+          <ul>
+            <li>E-commerce store</li>
+            <li>Directory / listing site</li>
+            <li>Booking &amp; reservation</li>
+            <li>Course / event platform</li>
+          </ul>
+        </div>
+        <div class="zone">
+          <h3>Platform <span class="n">Level 4</span></h3>
+          <p>Login, dashboards, multi-user, roles. Sab se mehnat wali.</p>
+          <ul>
+            <li>Web app / SaaS dashboard</li>
+            <li>Marketplace (multi-vendor)</li>
+            <li>Social / community app</li>
+            <li>Online ERP / CRM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="map-axis">
+        <span>← Aasan, 1–3 din, free hosting</span>
+        <span> Mushkil, 2–3 mahine, server + DB →</span>
+      </div>
+    </div>
+
+    <div style="height:34px"></div>
+
+    <h3 style="font-size:18px;margin-bottom:6px">Har type ki puri tafseel</h3>
+    <p style="font-size:15px;color:var(--muted);margin-bottom:18px">Koi bhi website in 12 mein se kisi ek par aati hai. Student apne project ko yahan dhoondh kar select karein.</p>
+
+    <div class="card-grid">
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v7H4zM13 4h7v4h-7zM13 11h7v9h-7zM4 14h7v6H4z"/></svg></span>
+          <h3>1. Static / Info Website</h3>
+          <span class="pill p-easy">Aasan</span>
+        </div>
+        <p class="tc-desc">Sirf HTML, CSS aur JS se bani hui website. Server kuch nahi karta, files hi bhej deta hai. Content badalne ke liye code edit karna padta hai.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Small business info site, brochure site, documentation site</dd></div>
+          <div><dt>Stack</dt><dd>HTML5, CSS3, Vanilla JS, Tailwind (optional)</dd></div>
+          <div><dt>Backend?</dt><dd>Nahi — database ki zaroorat nahi</dd></div>
+          <div><dt>Time</dt><dd>2–5 din</dd></div>
+          <div><dt>Hosting</dt><dd>Free — GitHub Pages / Netlify</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v7M14 17.5h7"/></svg></span>
+          <h3>2. Portfolio Website</h3>
+          <span class="pill p-easy">Aasan</span>
+        </div>
+        <p class="tc-desc">Apna kaam, skills aur contact dikhane ke liye. Yeh <em>har</em> beginner ka pehla project hona chahiye — kam pages, poori control, portfolio khud.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Developer / designer / photographer ka personal site</dd></div>
+          <div><dt>Stack</dt><dd>HTML, CSS, JS, thoda GSAP</dd></div>
+          <div><dt>Backend?</dt><dd>Nahi</dd></div>
+          <div><dt>Time</dt><dd>3–5 din</dd></div>
+          <div><dt>Pages</dt><dd>Home, About, Projects, Contact</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18v16H3z"/><path d="M7 9h10M7 13h6"/></svg></span>
+          <h3>3. Landing Page (One-Pager)</h3>
+          <span class="pill p-easy">Aasan</span>
+        </div>
+        <p class="tc-desc">Ek hi page, ek hi maqsad: user ko button dabwane par "kaam karwao". Marketing ya launch ke liye sab se aasan website form.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>App launch page, SaaS waitlist, event promo page</dd></div>
+          <div><dt>Stack</dt><dd>HTML, CSS, JS + Formspree (free form)</dd></div>
+          <div><dt>Backend?</dt><dd>Sirf form ke liye (ya koi bhi na)</dd></div>
+          <div><dt>Time</dt><dd>1–2 din</dd></div>
+          <div><dt>Key skill</dt><dd>CTA (call-to-action) design</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v14H4z"/><path d="M8 8h8M8 12h5M9 21h6"/></svg></span>
+          <h3>4. Blog / Personal Site</h3>
+          <span class="pill p-easy">Aasan</span>
+        </div>
+        <p class="tc-desc">Articles, categories, tags aur search. Content-heavy website — is mein versioning aur markdown se faida hota hai.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Tech blog, personal journal, newsletter site</dd></div>
+          <div><dt>Stack</dt><dd>HTML+CSS ya Astro / Hugo / Jekyll (markdown)</dd></div>
+          <div><dt>Backend?</dt><dd>Simple blogs: nahi; CMS blogs: haan</dd></div>
+          <div><dt>Time</dt><dd>3–7 din</dd></div>
+          <div><dt>Key skill</dt><dd>Content structure + typography</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M10 21v-6h4v6"/></svg></span>
+          <h3>5. Business / Corporate Site</h3>
+          <span class="pill p-med">Medium</span>
+        </div>
+        <p class="tc-desc">Multi-page website — Home, Services, About, Contact, Blog. Company ka official haal (online presence) dikhane ke liye. SEO yahan important ho jata hai.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Agency, hospital, school, restaurant ki site</dd></div>
+          <div><dt>Stack</dt><dd>HTML, CSS, JS + optional CMS</dd></div>
+          <div><dt>Backend?</dt><dd>Sirf contact form ke liye</dd></div>
+          <div><dt>Time</dt><dd>1–2 hafta</dd></div>
+          <div><dt>Key skill</dt><dd>Consistent design system</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 10h16M8 6v12"/></svg></span>
+          <h3>6. CMS Website (WordPress)</h3>
+          <span class="pill p-med">Medium</span>
+        </div>
+        <p class="tc-desc">Content admin panel se manage hota hai. Client ko khud posts edit karne dena ho to yeh behtareen hai — aur yeh freelancing ka sab se common kaam hai.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Magazine, news, agency site, membership</dd></div>
+          <div><dt>Stack</dt><dd>WordPress + theme + Elementor (drag &amp; drop)</dd></div>
+          <div><dt>Backend?</dt><dd>Haan — built-in database</dd></div>
+          <div><dt>Time</dt><dd>2–5 din (theme setup)</dd></div>
+          <div><dt>Pros</dt><dd>Client khud content badal sakta hai</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.5 12h11L21 7H6"/></svg></span>
+          <h3>7. E-Commerce Website</h3>
+          <span class="pill p-hard">Mushkil</span>
+        </div>
+        <p class="tc-desc">Products, cart, checkout, payment, orders, stock aur admin. Beech mein payment gateway aur shipping ka kaam sabse tricky hissa hai.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Daraz, Amazon, Shopify stores, local clothing brand</dd></div>
+          <div><dt>Stack</dt><dd>Shopify/WooCommerce (no-code) ya Medusa + Stripe</dd></div>
+          <div><dt>Backend?</dt><dd>Haan — products, orders, users, payments</dd></div>
+          <div><dt>Time</dt><dd>1–6 hafte</dd></div>
+          <div><dt>Key skill</dt><dd>Payment + inventory logic</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4a7 7 0 105.3 11.6L21 20.3"/><circle cx="11" cy="11" r="3"/></svg></span>
+          <h3>8. Directory / Listing Site</h3>
+          <span class="pill p-med">Medium</span>
+        </div>
+        <p class="tc-desc">Businesses ya listings ki directory — search, filter, category, map. Data entry zyada hoti hai, logic kam.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Yelp, Zillow, Yellow Pages, doctor directory</dd></div>
+          <div><dt>Stack</dt><dd>Next.js/Laravel + database</dd></div>
+          <div><dt>Backend?</dt><dd>Haan — listings + search index</dd></div>
+          <div><dt>Time</dt><dd>2–4 hafte</dd></div>
+          <div><dt>Key skill</dt><dd>Search &amp; filter + pagination</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/></svg></span>
+          <h3>9. Booking / Reservation Site</h3>
+          <span class="pill p-hard">Mushkil</span>
+        </div>
+        <p class="tc-desc">Calendar, availability, time slots, booking confirm, cancellation aur reminders. Date/time ka pure logic is ka dil hai.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Hotel booking, clinic appointment, salon, restaurant table</dd></div>
+          <div><dt>Stack</dt><dd>Next.js + DB + date library</dd></div>
+          <div><dt>Backend?</dt><dd>Haan — slots + users + notifications</dd></div>
+          <div><dt>Time</dt><dd>3–6 hafte</dd></div>
+          <div><dt>Key skill</dt><dd>Date/time zones + slot logic</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+          <h3>10. Web App / SaaS Dashboard</h3>
+          <span class="pill p-hard">Mushkil</span>
+        </div>
+        <p class="tc-desc">Login, dashboard, user accounts, roles, subscriptions aur settings. Yeh wahi type hai jis mein React sab se zyada kaam aata hai.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Notion-style tools, CRM, school management, task app</dd></div>
+          <div><dt>Stack</dt><dd>React + Node/Next + DB + Auth (JWT)</dd></div>
+          <div><dt>Backend?</dt><dd>Haan — zaroori</dd></div>
+          <div><dt>Time</dt><dd>4–10 hafte</dd></div>
+          <div><dt>Key skill</dt><dd>State management + auth</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v6H4zM4 13h7v6H4zM13 13h7v6h-7z"/></svg></span>
+          <h3>11. Marketplace / Multi-Vendor</h3>
+          <span class="pill p-hard">Mushkil</span>
+        </div>
+        <p class="tc-desc">Kai sellers apna maal bechte hain, buyer cart karta hai, platform beech mehta hai — seller onboarding aur payouts add ho jate hain.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Etsy, Foodpanda, Uber, Airbnb</dd></div>
+          <div><dt>Stack</dt><dd>Next.js + DB + Stripe Connect + S3</dd></div>
+          <div><dt>Backend?</dt><dd>Haan — sellers, products, orders, payouts</dd></div>
+          <div><dt>Time</dt><dd>2–3 mahine</dd></div>
+          <div><dt>Key skill</dt><dd>Multi-role permissions</dd></div>
+        </dl>
+      </article>
+
+      <article class="type-card">
+        <div class="tc-head">
+          <span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 20v-2a4 4 0 00-3-3.9"/><path d="M16 3.1a4 4 0 010 7.8"/></svg></span>
+          <h3>12. Social / Community App</h3>
+          <span class="pill p-hard">Mushkil</span>
+        </div>
+        <p class="tc-desc">Users apni posts, comments, likes aur friends ke saath connect hote hain. Real-time (notifications, chat) iska sab se mushkil hissa hai.</p>
+        <dl class="kv">
+          <div><dt>Real examples</dt><dd>Facebook, Instagram, Reddit, Discord community</dd></div>
+          <div><dt>Stack</dt><dd>React + Node + DB + Socket.io/WebSocket</dd></div>
+          <div><dt>Backend?</dt><dd>Haan — feed, relationships, notifications</dd></div>
+          <div><dt>Time</dt><dd>3–4 mahine</dd></div>
+          <div><dt>Key skill</dt><dd>Data modelling + real-time</dd></div>
+        </dl>
+      </article>
+
+    </div>
+
+    <div style="height:34px"></div>
+
+    <h3 style="font-size:18px;margin-bottom:12px">Sab types ek nazar mein — comparison table</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>Type</th><th>Backend / DB?</th><th>Stack</th><th>Difficulty</th><th>Time</th><th>Hosting cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><b>Static / Info</b></td><td>Nahi</td><td>HTML, CSS, JS</td><td><span class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></span></td><td>2–5 din</td><td>Free</td></tr>
+          <tr><td>2</td><td><b>Portfolio</b></td><td>Nahi</td><td>HTML, CSS, JS</td><td><span class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td><td>3–5 din</td><td>Free</td></tr>
+          <tr><td>3</td><td><b>Landing page</b></td><td>Nahi</td><td>HTML, CSS, JS</td><td><span class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></span></td><td>1–2 din</td><td>Free</td></tr>
+          <tr><td>4</td><td><b>Blog</b></td><td>Kabhi kabhi</td><td>HTML/Markdown, Astro</td><td><span class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td><td>3–7 din</td><td>Free–$$</td></tr>
+          <tr><td>5</td><td><b>Business site</b></td><td>Form only</td><td>HTML, CSS, JS + CMS</td><td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td><td>1–2 hafta</td><td>Free–$$</td></tr>
+          <tr><td>6</td><td><b>CMS (WordPress)</b></td><td>Haan</td><td>WordPress + theme</td><td><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td><td>2–5 din</td><td>$$</td></tr>
+          <tr><td>7</td><td><b>E-commerce</b></td><td>Haan</td><td>Shopify / WooCommerce</td><td><span class="dots hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td><td>1–6 hafte</td><td>$$–$$$</td></tr>
+          <tr><td>8</td><td><b>Directory</b></td><td>Haan</td><td>Next.js + DB</td><td><span class="dots hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td><td>2–4 hafte</td><td>$$</td></tr>
+          <tr><td>9</td><td><b>Booking</b></td><td>Haan</td><td>Next.js + DB + payments</td><td><span class="dots hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td>3–6 hafte</td><td>$$$</td></tr>
+          <tr><td>10</td><td><b>Web App / SaaS</b></td><td>Haan</td><td>React + Node + DB</td><td><span class="dots hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td>4–10 hafte</td><td>$$$</td></tr>
+          <tr><td>11</td><td><b>Marketplace</b></td><td>Haan</td><td>React + Node + Stripe</td><td><span class="dots hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td>2–3 mahine</td><td>$$$</td></tr>
+          <tr><td>12</td><td><b>Social / Community</b></td><td>Haan</td><td>React + Node + WS</td><td><span class="dots hard"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td>3–4 mahine</td><td>$$$</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warn" style="margin-top:18px">
+      <b>Teacher ka point:</b> Type 1 se 5 tak koi bhi database nahi chahiye — is liye yeh beginner ke liye <em>behtareen</em> hain. Agar student React seekh raha hai to seedha Type 10 (dashboard) par jump na karein, warna wo 6 hafte mein kuch solid nahi banayega.
+    </div>
+
+    <div style="height:30px"></div>
+
+    <h3 style="font-size:18px;margin-bottom:12px">Student ka faisla — kaunsa type chunein?</h3>
+    <div class="flow">
+      <div class="flow-node">
+        <span class="fn-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.3a3 3 0 015.6 1c0 2-3 3-3 3M12 17h.01"/></svg></span>
+        <div>
+          <h4>Student ka pehla sawal: "Website kis kaam ke liye hai?"</h4>
+          <p>Har jawab alag type, alag stack aur alag time le jaata hai. Neeche wahi faisla hota hai.</p>
+        </div>
+      </div>
+      <div class="flow-arrow">neeche</div>
+      <div class="flow-node">
+        <span class="fn-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <div>
+          <h4>Sirf apna kaam / skills dikhani hain?</h4>
+          <p>→ <strong>Type 2: Portfolio</strong> — 3–5 din, sirf HTML/CSS/JS. Yahan se shuru karein. <em>Yeh zaroori pehla qadam hai.</em></p>
+        </div>
+      </div>
+      <div class="flow-arrow">neeche</div>
+      <div class="flow-node">
+        <span class="fn-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg></span>
+        <div>
+          <h4>Koi ek cheez bechni hai ya kisi ko service dena hai?</h4>
+          <p>→ <strong>Type 3: Landing page</strong> (sirf ad), <strong>Type 7: E-commerce</strong> (bhi bechna), ya <strong>Type 9: Booking</strong> (slot lena).</p>
+        </div>
+      </div>
+      <div class="flow-arrow">neeche</div>
+      <div class="flow-node">
+        <span class="fn-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"/><path d="M4 9h16"/></svg></span>
+        <div>
+          <h4>Client ko khud content badalna hoga?</h4>
+          <p>→ <strong>Type 6: WordPress</strong> — code kam, content zyada. Freelancing ke liye sab se practical.</p>
+        </div>
+      </div>
+      <div class="flow-arrow">neeche</div>
+      <div class="flow-node">
+        <span class="fn-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span>
+        <div>
+          <h4>Login, accounts aur dashboard chahiye?</h4>
+          <p>→ <strong>Type 10: Web app</strong> — yahan React + backend + database lagta hai. Type 7 se 10 ke beech ka safar hi "full-stack" hota hai.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:20px">
+      <b>Teacher ka tareeqa:</b> Student se kahein ke woh apna "target website" ek line mein likhe — jaise "main ek bakery ka online order website banana chahta hoon jahan 8 products hon aur phone number se order aaye." Phir us line ko upar diye gaye 12 types mein se sab se qareeb type se milayein. Yeh exercise sab se zyada samajh banati hai.
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 2: SETUP ================= -->
+<section id="setup">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PART 02 / PHIR —</span>
+      <h2>Complete Setup (Environment)</h2>
+      <p class="sub">Website banane se pehle computer ko tayyar karna. Yeh <em>ek din ka kaam</em> hai lekin agar sahi na ho to baqi sab ka kaam ruk jata hai. Is part ko student ke saath bilkul ek saath karein — har command khud terminal mein chalayein, sirf screenshot mat dikhayein.</p>
+    </div>
+
+    <div class="en-summary">
+      <b>English summary</b>
+      <p>Environment setup = installing the four tools every web developer needs (editor, browser, Git, Node), creating a clean project folder structure, and wiring up a local preview server. Do this once, correctly, and the student can build any type of website afterwards. Each command below is meant to be typed by the student, not read aloud.</p>
+    </div>
+
+    <h3 style="font-size:18px;margin-bottom:12px">Kya kya install karna hai — 4 tools</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Tool</th><th>Kyun chahiye</th><th>Cost</th><th>Kab chahiye</th></tr></thead>
+        <tbody>
+          <tr><td><b>VS Code</b><br><span style="color:var(--muted);font-size:12.5px">code.visualstudio.com</span></td><td>Code likhne aur turant preview dekhne ke liye</td><td>Free</td><td>Day 1 — pehle din</td></tr>
+          <tr><td><b>Google Chrome</b><br><span style="color:var(--muted);font-size:12.5px">+ DevTools (F12)</span></td><td>Test karna + CSS/JS errors dekhna</td><td>Free</td><td>Day 1</td></tr>
+          <tr><td><b>Git</b><br><span style="color:var(--muted);font-size:12.5px">git-scm.com</span></td><td>Purane code ka backup, team work, aur <em>free hosting</em> se link</td><td>Free</td><td>Day 1</td></tr>
+          <tr><td><b>Node.js (LTS)</b><br><span style="color:var(--muted);font-size:12.5px">nodejs.org</span></td><td>React/Vite chalane ke liye. <code>npm</code> isi ke saath aata hai</td><td>Free</td><td>Week 9 (React phase)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:16px">
+      <b>Teacher ka point:</b> Node.js ko <em>pehle din hi</em> install karwa lein. Neeche ki React wali steps khatam ho jayengi aur agar us waqt install karna ho to 30–40 minute lag jayenge aur mood gir jayega. Install kar lein, use baad mein karte hain.
+    </div>
+
+    <div style="height:30px"></div>
+
+    <h3 style="font-size:18px;margin-bottom:14px">Setup ki 8 steps</h3>
+    <div class="timeline">
+
+      <div class="step">
+        <span class="step-ic">1</span>
+        <h3>VS Code install karein</h3>
+        <div class="step-sub">~5 minutes · manual</div>
+        <p>Browser mein <code>code.visualstudio.com</code> kholein, "Download for Windows" par click karein, aur installer chalayein. Install ke dauran "Add to PATH" wala checkbox <strong>zaroor tick</strong> karein — warna terminal mein command nahi chalega.</p>
+        <ul>
+          <li>Mac users: "mac" button, Linux users: ".deb" ya tarball</li>
+          <li>VS Code khulne ke baad <strong>Windows key + <code>Ctrl+Shift+P</code></strong> (Mac: <code>Cmd+Shift+P</code>) dabaayein — yeh "Command Palette" hai. <code>Shell Command: Install 'code' command in PATH</code> search karke chalayein. Is se terminal mein <code>code .</code> se project khul jayega.</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">2</span>
+        <h3>4 extensions install karein</h3>
+        <div class="step-sub">~8 minutes · VS Code ke andar</div>
+        <p>VS Code mein left side ke "Extensions" icon par click karein (ya <code>Ctrl+Shift+X</code>) aur neeche diye gaye chaar extensions search karke <strong>Install</strong> karein.</p>
+        <div class="tbl-wrap" style="margin-top:10px">
+          <table style="min-width:420px">
+            <thead><tr><th>Extension</th><th>Kya karta hai</th></tr></thead>
+            <tbody>
+              <tr><td><b>Live Server</b></td><td>Code save karte hi browser khul ke live page dikhata hai</td></tr>
+              <tr><td><b>HTML CSS Support</b></td><td>VS Code ko classes ka suggestion deta hai (typo pakadta hai)</td></tr>
+              <tr><td><b>Prettier</b></td><td>Code ki marzi se thoda saaf likhta hai</td></tr>
+              <tr><td><b>ESLint</b> (Week 6 ke baad)</td><td>JavaScript ke ghaltiyan pakadta hai</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:10px">Install ke baad VS Code ek baar <strong>dobara restart</strong> karein — tabhi sab extensions activate hote hain.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">3</span>
+        <h3>Git install karein aur check karein</h3>
+        <div class="step-sub">~10 minutes · terminal</div>
+        <p><code>git-scm.com</code> se download karke default settings ke saath install karein. Windows par install ke baad VS Code ko <em>dobara kholna</em> zaroori hai, warna Git detect nahi hota.</p>
+        <p>Phir terminal kholein: Windows par <code>Win + R</code> → <code>cmd</code> → Enter. Mac par Terminal app, Linux par <code>Ctrl+Alt+T</code>.</p>
+        <pre><code><span class="c"># Git sahi install hua ya nahi — yeh dono commands chalayein</span>
+git --version
+<span class="c"># Expected output: git version 2.4x.x</span>
+
+<span class="c"># Apni identity set karein (ek baar, hamesha ke liye)</span>
+git config --global user.name "Your Name"
+git config --global user.email "ali@example.com"
+
+<span class="c"># GitHub se connect karne ke liye SSH key bhi banani hogi (aap baad mein batayenge)</span></code></pre>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">4</span>
+        <h3>Node.js (LTS) install karein</h3>
+        <div class="step-sub">~5 minutes · React phase ke liye</div>
+        <p><code>nodejs.org</code> kholein aur <strong>LTS</strong> wala button download karein (number ke saath <em>LTS</em> likha hota hai — wahi sahi hai). Install default hi rakhein.</p>
+        <pre><code>node -v
+npm -v
+<span class="c"># Expected: v20.x.x  aur  10.x.x  (versions thori different ho sakti hain)</span></code></pre>
+        <p>Dono commands ka jawab aa jaye — iska matlab Node install ho gaya hai.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">5</span>
+        <h3>Project folder banaayein</h3>
+        <div class="step-sub">~5 minutes · folder structure</div>
+        <p>Terminal mein apne projects ke liye ek jagah banaayein. <code>my-website</code> naam rakhein:</p>
+        <pre><code><span class="c"># Desktop pe jaayein (ya koi bhi jagah)</span>
+cd Desktop
+mkdir my-website
+cd my-website
+
+<span class="c"># VS Code mein yeh folder kholein</span>
+code .</code></pre>
+        <p>Ab folder ke andar yeh structure banayein (<code>mkdir</code> command se ya VS Code mein right-click → New Folder):</p>
+        <pre><code>my-website/
+├── index.html          <span class="c">← main page (sab se zaroori)</span>
+├── about.html          <span class="c">← dusri pages</span>
+├── css/
+│   ├── style.css       <span class="c">← main styling</span>
+│   └── responsive.css  <span class="c">← mobile wale styles</span>
+├── js/
+│   └── main.js         <span class="c">← JavaScript</span>
+├── images/             <span class="c">← photos, logos, icons</span>
+├── fonts/              <span class="c">← custom fonts (optional)</span>
+└── README.md           <span class="c">← project ka tafseel</span></code></pre>
+        <div class="warn" style="margin-top:12px"><b>Zaroori usool:</b> Folder ka naam aur file ka naam kabhi "final", "final2", "new folder" mat rakhein. <code>index.html</code> ka naam hamesha wahi rehna chahiye — hosting usi ko dhoondti hai.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">6</span>
+        <h3>Pehli file banaayein aur Live Server chalaayein</h3>
+        <div class="step-sub">~5 minutes · pehla test</div>
+        <p><code>index.html</code> mein yeh sab se pehle code likhein:</p>
+        <pre><code><span class="p">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;html</span> <span class="k">lang</span><span class="p">=</span><span class="s">"ur"</span><span class="p">&gt;</span>
+<span class="p">&lt;head&gt;</span>
+  <span class="p">&lt;meta</span> <span class="k">charset</span><span class="p">=</span><span class="s">"UTF-8"</span><span class="p">&gt;</span>
+  <span class="p">&lt;meta</span> <span class="k">name</span><span class="p">=</span><span class="s">"viewport"</span> <span class="k">content</span><span class="p">=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="p">&gt;</span>
+  <span class="p">&lt;title&gt;</span>Meri Pehli Website<span class="p">&lt;/title&gt;</span>
+  <span class="p">&lt;link</span> <span class="k">rel</span><span class="p">=</span><span class="s">"stylesheet"</span> <span class="k">href</span><span class="p">=</span><span class="s">"css/style.css"</span><span class="p">&gt;</span>
+<span class="p">&lt;/head&gt;</span>
+<span class="p">&lt;body&gt;</span>
+
+  <span class="p">&lt;h1&gt;</span>Hello Duniya! <span class="p">&lt;/h1&gt;</span>
+  <span class="p">&lt;p&gt;</span>Yeh meri pehli website hai.<span class="p">&lt;/p&gt;</span>
+
+  <span class="p">&lt;script</span> <span class="k">src</span><span class="p">=</span><span class="s">"js/main.js"</span><span class="p">&gt;&lt;/script&gt;</span>
+<span class="p">&lt;/body&gt;</span>
+<span class="p">&lt;/html&gt;</span></code></pre>
+        <p>Ab VS Code mein <code>index.html</code> par right-click → <strong>"Open with Live Server"</strong>. Browser khul jayega aur har save par page refresh ho jayega. Yehi <em>student ka asli kaam hai</em> — ab woh bina kuch deploy kiye website bana sakta hai.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">7</span>
+        <h3>GitHub account + pehla commit</h3>
+        <div class="step-sub">~15 minutes · backup + free hosting</div>
+        <p><code>github.com</code> par account banayein (free). Phir terminal mein:</p>
+        <pre><code>git init
+git add .
+git commit -m "Pehla commit: setup done"
+
+<span class="c"># GitHub pe naya repository banayein (browser mein), phir:</span>
+git branch -M main
+git remote add origin https://github.com/USERNAME/my-website.git
+git push -u origin main</code></pre>
+        <div class="note" style="margin-top:12px"><b>Faida:</b> Ab har baar <code>git add .</code> → <code>git commit -m "kya kiya"</code> → <code>git push</code> likhne se <em>purana kaam ka backup</em> mil jata hai, aur GitHub Pages se website <strong>free live</strong> ho jati hai (Part 4 mein tareeqa).</div>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">8</span>
+        <h3>Chrome DevTools seekh lein</h3>
+        <div class="step-sub">~20 minutes · sab se qeemti skill</div>
+        <p>Browser mein <code>F12</code> (ya <code>Ctrl+Shift+I</code>) dabaayein. Yeh student ka "x-ray" hai — website ke andar jo ho raha hai sab dikhta hai.</p>
+        <div class="split" style="margin-top:10px">
+          <div class="panel">
+            <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg> Elements tab</h4>
+            <p style="font-size:14px;margin:0">Left mein poora HTML + CSS dikhta hai. Kisi bhi element par click karein to uski CSS rules right mein highlight ho jati hain. Yeh <em>CSS seekhne ka sab se tez tareeqa</em> hai — guess karna band, sach pata chal jata hai.</p>
+          </div>
+          <div class="panel">
+            <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M12 8v8"/></svg> Console tab</h4>
+            <p style="font-size:14px;margin:0">Yahan JS ke errors aate hain. Console mein <code>console.log("test")</code> likh ke save karein — message turant dikh jayega. <strong>Har website ka pehla kaam: console khol ke rakhna.</strong></p>
+          </div>
+        </div>
+        <p style="margin-top:12px">Aur teen tabs: <strong>Console</strong> (errors), <strong>Network</strong> (file load ho rahi hai ya nahi), <strong>Responsive</strong> (phone size preview — phone icon par click karke <code>iPhone</code> select karein).</p>
+      </div>
+
+    </div>
+
+    <div class="note" style="margin-top:22px">
+      <b>Setup khatam hone ki checklist:</b> VS Code khul raha hai ✔ · Live Server chalta hai ✔ · <code>git --version</code> jawab deta hai ✔ · <code>node -v</code> jawab deta hai ✔ · <code>index.html</code> browser mein khul raha hai ✔ · F12 par Elements tab khul raha hai ✔. — Student se kahein ke yeh 6 cheezein khud check kare, aap sirf dekh lein.
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 3: BUILD STEPS ================= -->
+<section id="build">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PART 03 / PHIR BHI —</span>
+      <h2>Website banane ka Tareeqa (10 Steps)</h2>
+      <p class="sub">Ab type decide ho gaya hai. Ab actual kaam. Yeh 10 steps <em>har website</em> ke liye same hain — portfolio ho ya e-commerce. Student ko yehi sequence yaad karwana hai: pehle sochna, phir banana, phir test, phir live karna.</p>
+    </div>
+
+    <div class="en-summary">
+      <b>English summary</b>
+      <p>Every website — regardless of type — is built with the same 10 steps: define the goal and page list, sketch the design, create the folder structure, write semantic HTML, style with CSS, make it responsive, add JavaScript behaviour, optimise images, test properly, then deploy with a domain. Skipping steps 1, 9 or 10 is the most common reason a student ends up with a website that looks good but does not work.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="step">
+        <span class="step-ic">1</span>
+        <h3>Goal aur pages ka faisla (Sitemap)</h3>
+        <div class="step-sub">20 minutes · pehle coding se</div>
+        <p>Sab se pehle <strong>paper par</strong> likhein ke is website mein kaun kaun se pages honge aur har page par kya hoga. Sketch banana bhi isi step mein hai — paper par ya Figma mein.</p>
+        <p><strong>Portfolio ka example sitemap:</strong></p>
+        <pre><code>Home      → Hero + mera introduction + 3 projects
+About     → meri kahani, skills, timeline
+Projects  → 6 project cards (filter button bhi)
+Contact   → form + email + social links</code></pre>
+        <ul>
+          <li>Har page ka <strong>ek maqsad</strong> likhein — ek line. Agar do maqsad ho to woh do alag pages hain.</li>
+          <li>Abhi 5 se zyada pages mat banayein. Pehle 3 pages perfect banaayein, phir aur add karein.</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">2</span>
+        <h3>Design / Wireframe</h3>
+        <div class="step-sub">30–90 minutes · Figma ya paper</div>
+        <p>Layout ka naksh banayein. Pehle sirf boxes (sirf shapes, koi rang nahi) — isay kehte hain <strong>wireframe</strong>. Rang baad mein add honge.</p>
+        <ul>
+          <li>Free aur beginner-friendly: <strong>pencil (paper.com)</strong> ya Figma ka free plan</li>
+          <li>Important: mobile layout bhi banaayein — desktop ki copy mat banayein</li>
+          <li>Ek <em>color + font</em> system tay karein: 1 primary color, 1 accent, 2 font sizes, 1 button style</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">3</span>
+        <h3>Folder structure + HTML skeleton</h3>
+        <div class="step-sub">20 minutes · setup wala hissa</div>
+        <p>Setup (Part 2, Step 5) wala folder structure banayein. Phir har page ke liye ek <strong>skeleton HTML</strong> likhein — abhi sirf structure, content baad mein aayega.</p>
+        <pre><code><span class="p">&lt;header&gt;</span>   <span class="c">← logo aur navigation</span>
+  <span class="p">&lt;nav&gt;&lt;/nav&gt;</span>
+<span class="p">&lt;/header&gt;</span>
+
+<span class="p">&lt;main&gt;</span>
+  <span class="p">&lt;section&gt;</span>  <span class="c">← hero / intro</span>
+  <span class="p">&lt;section&gt;</span>  <span class="c">← main content</span>
+  <span class="p">&lt;section&gt;</span>  <span class="c">← gallery / features</span>
+  <span class="p">&lt;section&gt;</span>  <span class="c">← contact form</span>
+<span class="p">&lt;/main&gt;</span>
+
+<span class="p">&lt;footer&gt;</span>  <span class="c">← copyright, links</span>
+<span class="p">&lt;/footer&gt;</span></code></pre>
+        <div class="note" style="margin-top:10px"><b>Wajah:</b> <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code> sirf <em>sirf decoration</em> nahi — Google inhe padhta hai (SEO) aur screen-reader users inhe use karte hain (accessibility). Student ko yehi structure yaad karwaayein, har page par.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">4</span>
+        <h3>HTML likhein — semantic aur saaf</h3>
+        <div class="step-sub">2–4 hours · content ke saath</div>
+        <p>Ab content daalein. Har element ka <strong>sahi tag</strong> chunein — yeh sab se important rule hai.</p>
+        <div class="tbl-wrap" style="margin-top:8px">
+          <table style="min-width:520px">
+            <thead><tr><th>Galat</th><th>Sahi</th><th>Kyun</th></tr></thead>
+            <tbody>
+              <tr><td><code>&lt;div&gt;</code> har jagah</td><td><code>&lt;header&gt; &lt;nav&gt; &lt;main&gt; &lt;section&gt; &lt;article&gt; &lt;footer&gt;</code></td><td>SEO + accessibility</td></tr>
+              <tr><td><code>&lt;b&gt;</code> heading ke liye</td><td><code>&lt;h1&gt;</code> … <code>&lt;h6&gt;</code></td><td>Heading ka hierarchy</td></tr>
+              <tr><td><code>&lt;p&gt;</code> title ke liye</td><td><code>&lt;title&gt;</code> (head mein)</td><td>Browser tab ka naam</td></tr>
+              <tr><td>Image bina <code>alt</code></td><td><code>&lt;img src="..." alt="kya dikha raha hai"&gt;</code></td><td>Blind users ke liye zaroori</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <pre style="margin-top:12px"><code><span class="p">&lt;nav&gt;</span>
+  <span class="p">&lt;ul&gt;</span>
+    <span class="p">&lt;li&gt;&lt;a</span> <span class="k">href</span><span class="p">=</span><span class="s">"#about"</span><span class="p">&gt;</span>About<span class="p">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="p">&lt;li&gt;&lt;a</span> <span class="k">href</span><span class="p">=</span><span class="s">"#projects"</span><span class="p">&gt;</span>Projects<span class="p">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="p">&lt;li&gt;&lt;a</span> <span class="k">href</span><span class="p">=</span><span class="s">"#contact"</span><span class="p">&gt;</span>Contact<span class="p">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="p">&lt;/ul&gt;</span>
+<span class="p">&lt;/nav&gt;</span></code></pre>
+        <p>Pehle <strong>poora HTML</strong> likh lein, styling baad mein. Yeh beginner ka sab se badi ghalti hai — dono saath karna.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">5</span>
+        <h3>CSS — box model, Flexbox, Grid</h3>
+        <div class="step-sub">4–8 hours · styling</div>
+        <p>CSS ko 3 hisson mein seekhein, isi tarteeb se. <strong>1) Box model</strong> — har element ka <code>margin</code> (bahar), <code>padding</code> (andar), <code>border</code> aur <code>content</code>. <strong>2) Flexbox</strong> — ek line mein cheezein side-by-side (nav, buttons, cards). <strong>3) Grid</strong> — 2D layout (gallery, dashboard).</p>
+        <pre><code><span class="c">/* Flexbox: navigation bar */</span>
+.nav {
+  <span class="k">display</span>: flex;
+  <span class="k">align-items</span>: center;      <span class="c">/* cross-axis par center */</span>
+  <span class="k">justify-content</span>: space-between; <span class="c">/* main axis par faila do */</span>
+  <span class="k">padding</span>: 16px 32px;
+}
+.nav a {
+  <span class="k">text-decoration</span>: none;
+  <span class="k">color</span>: #3a4256;
+  <span class="k">margin-left</span>: 24px;
+}
+
+<span class="c">/* Grid: 3 column cards, gap ke saath */</span>
+.cards {
+  <span class="k">display</span>: grid;
+  <span class="k">grid-template-columns</span>: repeat(3, 1fr);
+  <span class="k">gap</span>: 24px;
+}</code></pre>
+        <div class="note" style="margin-top:10px"><b>Teacher ka tareeqa:</b> Har styling rule ke saath likhwayein <em>"yeh kya karta hai?"</em> — jawab sirf English mein dein, jaise "flex container apne children ko ek line mein rakhta hai". Student ko ratta nahi, samajhna chahiye.</div>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">6</span>
+        <h3>Responsive banaayein (mobile-first)</h3>
+        <div class="step-sub">2–4 hours · zaroori step</div>
+        <p>Us din 70% log phone se website kholte hain. Is liye <strong>pehle mobile</strong> ka design banaayein, phir bade screen par layout khule. Isay kehte hain <em>mobile-first</em>.</p>
+        <pre><code><span class="c">/* Base: phone wala layout (bina kisi condition ke) */</span>
+.cards { <span class="k">grid-template-columns</span>: 1fr; }
+.nav-links { <span class="k">display</span>: none; }
+
+<span class="c">/* 768px se upar: tablet + laptop */</span>
+<span class="p">@media</span> (<span class="k">min-width</span>: 768px) {
+  .cards { <span class="k">grid-template-columns</span>: repeat(2, 1fr); }
+  .nav-links { <span class="k">display</span>: flex; }
+}
+
+<span class="c">/* 1024px se upar: desktop */</span>
+<span class="p">@media</span> (<span class="k">min-width</span>: 1024px) {
+  .cards { <span class="k">grid-template-columns</span>: repeat(3, 1fr); }
+}</code></pre>
+        <ul>
+          <li>Breakpoints: <code>768px</code> (tablet), <code>1024px</code> (laptop), <code>1440px</code> (bada screen)</li>
+          <li>Test: DevTools → phone icon → <code>iPhone</code> aur <code>iPad</code> — dono par check karein</li>
+          <li>Images par <code>max-width: 100%</code> zaroor lagayein, warna phone par scroll aayega</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">7</span>
+        <h3>JavaScript — website ko "zinda" karein</h3>
+        <div class="step-sub">3–6 hours · interactivity</div>
+        <p>HTML se <em>structure</em> banta hai, CSS se <em>shakal</em>, JavaScript se <em>kaam</em>. Pehle sirf 3 cheezein seekhein: element dhoondna, event sunna, aur content badalna.</p>
+        <pre><code><span class="c">// 1) Element dhoondna</span>
+<span class="k">const</span> button = document.<span class="k">querySelector</span>(<span class="s">"#menu-btn"</span>);
+
+<span class="c">// 2) Click ka event sunna</span>
+button.<span class="k">addEventListener</span>(<span class="s">"click"</span>, () =&gt; {
+  <span class="c">// 3) Content / class badalna</span>
+  document.<span class="k">querySelector</span>(<span class="s">".nav-links"</span>).<span class="k">classList</span>.<span class="k">toggle</span>(<span class="s">"active"</span>);
+});</code></pre>
+        <p style="margin-top:10px">CSS mein mobile menu ke liye sirf ek rule chahiye:</p>
+        <pre><code><span class="p">@media</span> (<span class="k">max-width</span>: 767px) {
+  .nav-links.active { <span class="k">display</span>: flex; <span class="k">flex-direction</span>: column; }
+}</code></pre>
+        <p>Pehle 3 JS projects banayein: <strong>mobile menu toggle</strong>, <strong>dark/light mode toggle</strong> (localStorage ke saath), aur <strong>form validation</strong>.</p>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">8</span>
+        <h3>Images aur assets optimise karein</h3>
+        <div class="step-sub">45 minutes · speed ka masla</div>
+        <p>Websites slow isliye hoti hain ke images asli size mein hoti hain. Ek 4 MB ki photo page ko 3 second tak khaali dikhati hai.</p>
+        <ul>
+          <li>Photos ko <strong>WebP</strong> format mein convert karein (free: tinypng.com, squoosh.app) — size 70–80% kam ho jati hai</li>
+          <li>Har image par <code>loading="lazy"</code> (sirf screen par aaye tab load ho)</li>
+          <li>Icons ke liye inline SVG behtar hai PNG se</li>
+          <li>Total page size 1–2 MB se kam rakhein</li>
+        </ul>
+        <pre><code><span class="p">&lt;img</span> <span class="k">src</span><span class="p">=</span><span class="s">"images/project.webp"</span> <span class="k">alt</span><span class="p">=</span><span class="s">"Bakery ka cake"</span> <span class="k">loading</span><span class="p">=</span><span class="s">"lazy"</span> <span class="p">&gt;</span></code></pre>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">9</span>
+        <h3>Test karein — 6 checks</h3>
+        <div class="step-sub">1 hour · "kya sach mein kaam kar rahi hai?"</div>
+        <p>Student ka sab se aam ghalti: website ban gayi, lekin test kabhi nahi ki. Neeche ka checklist har website par lagayein.</p>
+        <div class="checks" style="margin-top:10px">
+          <div class="check"><span class="box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><h4>Console khaali hai?</h4><p>F12 → Console. Koi bhi red error nahi hona chahiye.</p></div></div>
+          <div class="check"><span class="box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><h4>Mobile par dekha?</h4><p>DevTools → phone icon → iPhone + iPad preview.</p></div></div>
+          <div class="check"><span class="box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><h4>Sab links kaam kar rahe hain?</h4><p>Har link par click karein — koi dead link na ho.</p></div></div>
+          <div class="check"><span class="box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><h4>Form submit ho raha hai?</h4><p>Actually bhej ke dekhein ke message aa raha hai.</p></div></div>
+          <div class="check"><span class="box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><h4>Text padhne layak hai?</h4><p>Chhota phone par bhi font chhota na lage, dark/light contrast theek ho.</p></div></div>
+          <div class="check"><span class="box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><h4>Speed test</h4><p>pagespeed.web.dev → URL daalein. Score 90+ hona chahiye.</p></div></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-ic">10</span>
+        <h3>Deploy karein — website live + domain</h3>
+        <div class="step-sub">1–2 hours · free hosting</div>
+        <p>Yeh woh step hai jahan student ko "maine website bana li" ka ehsaas hota hai. <strong>GitHub Pages</strong> aur <strong>Netlify</strong> dono free hain — beginner ke liye Netlify drag-and-drop sab se aasan hai.</p>
+        <pre><code><span class="c"># Netlify ka tareeqa (10 second):</span>
+<span class="c"># 1) app.netlify.com → "Add new site" → "Deploy manually"</span>
+<span class="c"># 2) poora project folder drag &amp; drop kar dein</span>
+<span class="c"># 3) 30 second mein live URL mil jayega</span>
+<span class="c"># 4) Site settings → Change site name → apna naam</span>
+<span class="c">#    (example: ali-portfolio → ali-portfolio.netlify.app)</span></code></pre>
+        <p style="margin-top:10px"><strong>GitHub Pages ka tareeqa</strong> (agar aap Git seekh rahe hain to yehi behtar hai):</p>
+        <pre><code><span class="c"># Settings → Pages → Source: main branch → / (root) → Save</span>
+<span class="c"># Phir link milega: https://USERNAME.github.io/my-website</span></code></pre>
+        <div class="note" style="margin-top:12px"><b>Domain (custom name):</b> Apna asli naam jodne ke liye domain khareedna hota hai (GoDaddy, Namecheap, Google Domains — saal mein kuch dollars). Usay Cloudflare ya Netlify se jorr dein — SSL (https) automatic mil jata hai. Student ko pehle free subdomain par website live karwaayein, domain baad mein.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 4: 7-DAY RECIPE ================= -->
+<section id="recipe">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PART 04 —</span>
+      <h2>7 Din Mein Pehli Website (Practical Plan)</h2>
+      <p class="sub">Student ko theory bohat zyada na dein. Uski pehli website <strong>ek hafte</strong> mein live honi chahiye — confidence isi se banti hai. Roz 2–3 ghante dein, 7 din, aur ek <strong>portfolio</strong> live ho jayegi.</p>
+    </div>
+
+    <div class="en-summary">
+      <b>English summary</b>
+      <p>Give the student one finished, live website in the first week — do not wait until they "know enough". This 7-day plan builds a personal portfolio from an empty folder to a deployed URL: plan, HTML, CSS, responsive, JavaScript, polish, deploy. Two to three focused hours per day is enough. Momentum matters more than completeness at this stage.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:22px">
+      <div class="panel g">
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Roz kitna waqt</h4>
+        <p style="font-size:14px;margin:0 0 10px">Total <strong>≈ 16–17 ghante</strong> — hafte mein 7 din, roz 2 se 3 ghante. Is se zyada dein to 3 din mein bore ho jayega; kam dein to 2 hafte lag jayenge.</p>
+        <div class="bench-row" style="grid-template-columns:82px 1fr 52px"><span class="label">Day 1</span><div class="bar-bg"><div class="bar-fill" style="width:58%"></div></div><span class="val">2.0h</span></div>
+        <div class="bench-row" style="grid-template-columns:82px 1fr 52px"><span class="label">Day 2</span><div class="bar-bg"><div class="bar-fill" style="width:29%"></div></div><span class="val">1.0h</span></div>
+        <div class="bench-row" style="grid-template-columns:82px 1fr 52px"><span class="label">Day 3</span><div class="bar-bg"><div class="bar-fill" style="width:88%"></div></div><span class="val">3.0h</span></div>
+        <div class="bench-row" style="grid-template-columns:82px 1fr 52px"><span class="label">Day 4</span><div class="bar-bg"><div class="bar-fill" style="width:58%"></div></div><span class="val">2.0h</span></div>
+        <div class="bench-row" style="grid-template-columns:82px 1fr 52px"><span class="label">Day 5</span><div class="bar-bg"><div class="bar-fill" style="width:58%"></div></div><span class="val">2.0h</span></div>
+        <div class="bench-row" style="grid-template-columns:82px 1fr 52px"><span class="label">Day 6</span><div class="bar-bg"><div class="bar-fill" style="width:88%"></div></div><span class="val">3.0h</span></div>
+        <div class="bench-row" style="grid-template-columns:82px 1fr 52px"><span class="label">Day 7</span><div class="bar-bg"><div class="bar-fill" style="width:44%"></div></div><span class="val">1.5h</span></div>
+      </div>
+      <div class="panel">
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.2L21 10l-5.4 4 1.6 6.8L12 16.9 6.8 20.8 8.4 14 3 10l6.6-1.8z"/></svg> Is hafte ka target</h4>
+        <p style="font-size:14px;margin:0 0 12px">Ek <strong>4-page personal portfolio</strong> — live URL ke saath:</p>
+        <ul style="font-size:14px;margin-bottom:10px">
+          <li>Home (hero + introduction)</li>
+          <li>About (skills + timeline)</li>
+          <li>Projects (6 cards)</li>
+          <li>Contact (form + links)</li>
+        </ul>
+        <p style="font-size:14px;margin:0">Pehli website ka maqsad <em>sirf seekhna</em> hai — design perfect ho, is zaroorat nahi. Doosri website se behtar hogi, yeh student ko samajh aana chahiye.</p>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Day</th><th>Kya karna hai</th><th>Natija / output</th><th>Samay</th></tr></thead>
+        <tbody>
+          <tr><td><b>Day 1</b></td><td>Setup (Part 2) · sitemap 4 pages ka · paper par wireframe · folder structure</td><td>Sitemap + sketch + <code>index.html</code> khali</td><td>2h</td></tr>
+          <tr><td><b>Day 2</b></td><td>Saara HTML likhein — header, nav, 4 sections, footer, content</td><td>Website poori, lekin bekaar dikhti hai</td><td>1h</td></tr>
+          <tr><td><b>Day 3</b></td><td>CSS: colors, fonts, spacing, box model · navbar Flexbox · buttons · cards Grid</td><td>Website "designed" lagti hai</td><td>3h</td></tr>
+          <tr><td><b>Day 4</b></td><td>Responsive: media queries · hamburger menu · images resize</td><td>Phone par bhi theek</td><td>2h</td></tr>
+          <tr><td><b>Day 5</b></td><td>JavaScript: mobile menu toggle · dark mode toggle (localStorage) · form validation</td><td>Buttons kaam karte hain</td><td>2h</td></tr>
+          <tr><td><b>Day 6</b></td><td>Content + images (WebP) · polish · accessibility (alt, label) · 6-point test</td><td>Ready to deploy</td><td>3h</td></tr>
+          <tr><td><b>Day 7</b></td><td>Git push · Netlify deploy · free subdomain ya domain · kisi ko dikhaayein</td><td><strong>Live website + shareable link</strong></td><td>1.5h</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:18px">
+      <b>Teacher ka tareeqa:</b> Har raat ke end mein student se kahein ke woh <em>ek line</em> likh kar rakhe: "Aaj maine kya seekha?" — 7 din baad yeh 7 lines khud par bane portfolio se zyada valuable hongi. Aur har 2 din baad website kisi aur member ko dikhaayein — feedback se hi aadat banti hai.
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 5: CURRICULUM ================= -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PART 05 —</span>
+      <h2>12-Week Curriculum (Basics → React)</h2>
+      <p class="sub">Ek <strong>bilkul beginner</strong> ke liye 12 hafte ka complete course. Har module ke end par ek <em>deliverable</em> hai — yaani kuch hai jo student ka apna hai. Topics sirf list nahi, har module ke saath output bhi hai.</p>
+    </div>
+
+    <div class="en-summary">
+      <b>English summary</b>
+      <p>A structured 12-week syllabus for a complete beginner, ending with React. Each module produces a tangible deliverable so progress is visible and the student always has something to show. Weeks 1–8 build the fundamentals (HTML, CSS, responsive, JavaScript, Git); weeks 9–12 introduce React, Tailwind and API work. One module per 1–2 weeks, roughly 3–4 focused hours per week.</p>
+    </div>
+
+    <div class="mod">
+      <div class="mod-w"><b>0</b><span>Week 1</span></div>
+      <div>
+        <h3>Module 0 — Setup &amp; Tools</h3>
+        <div class="dur">1 hafta · 4 ghante</div>
+        <p>Sab kuch install karna, folder structure, Live Server, Git + GitHub account, DevTools. Is module ke baghair kuch nahi hota.</p>
+        <div class="topics"><span>VS Code</span><span>Extensions</span><span>Git install</span><span>GitHub</span><span>Node.js</span><span>DevTools</span><span>Folder structure</span></div>
+        <div class="out"><b>Output:</b> Ek khaali project folder jo GitHub par hai + Live Server chal raha hai.</div>
+      </div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-w"><b>1</b><span>Week 1–2</span></div>
+      <div>
+        <h3>Module 1 — HTML (structure)</h3>
+        <div class="dur">2 hafte · 8 ghante</div>
+        <p>Tags, attributes, nesting, semantic tags, images, links, tables, forms, accessibility (alt, label). Har concept ke baad 3 chhoti exercises.</p>
+        <div class="topics"><span>Doctype</span><span>Semantic tags</span><span>Forms</span><span>Tables</span><span>SEO basics</span><span>Alt text</span></div>
+        <div class="out"><b>Output:</b> Ek 3-page ki pure-HTML website (bina kisi CSS ke) — browser mein chal rahi ho.</div>
+      </div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-w"><b>2</b><span>Week 3–4</span></div>
+      <div>
+        <h3>Module 2 — CSS (styliing)</h3>
+        <div class="dur">2 hafte · 10 ghante</div>
+        <p>Selectors, box model, units (px/rem/em), colors, typography, backgrounds, Flexbox, Grid, positioning, transitions, variables, Tailwind ke pehle 2 hafte.</p>
+        <div class="topics"><span>Box model</span><span>Flexbox</span><span>Grid</span><span>Position</span><span>Transitions</span><span>CSS variables</span><span>Tailwind intro</span></div>
+        <div class="out"><b>Output:</b> Portfolio website ka poora design — desktop view par 100% theek.</div>
+      </div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-w"><b>3</b><span>Week 5</span></div>
+      <div>
+        <h3>Module 3 — Responsive &amp; Git</h3>
+        <div class="dur">1 hafta · 5 ghante</div>
+        <p>Media queries, mobile-first, Flexbox/Grid responsive patterns, hamburger menu, plus Git: add, commit, push, branch, merge aur GitHub Pages.</p>
+        <div class="topics"><span>Media queries</span><span>Mobile-first</span><span>clamp()</span><span>Git basics</span><span>Branches</span><span>GitHub Pages</span></div>
+        <div class="out"><b>Output:</b> Website phone par bhi perfect + pehla live deploy (free URL).</div>
+      </div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-w"><b>4</b><span>Week 6–7</span></div>
+      <div>
+        <h3>Module 4 — JavaScript Basics</h3>
+        <div class="dur">2 hafte · 10 ghante</div>
+        <p>Variables, data types, conditions, loops, functions, arrays, objects, DOM (querySelector, createElement, addEventListener), events, form validation, localStorage, fetch + API (weather app).</p>
+        <div class="topics"><span>Variables</span><span>Functions</span><span>Arrays &amp; Objects</span><span>DOM</span><span>Events</span><span>Validation</span><span>localStorage</span><span>fetch/API</span></div>
+        <div class="out"><b>Output:</b> Weather app (live API se) + localStorage wala dark mode.</div>
+      </div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-w"><b>5</b><span>Week 8</span></div>
+      <div>
+        <h3>Module 5 — Project 1 + Portfolio</h3>
+        <div class="dur">1 hafta · 5 ghante</div>
+        <p>Pehla bada project: full portfolio website. Uske baad <em>apni</em> portfolio site — yehi student ka future job/portfolio banega.</p>
+        <div class="topics"><span>Project planning</span><span>Full build</span><span>SEO meta tags</span><span>Analytics</span><span>Custom domain</span></div>
+        <div class="out"><b>Output:</b> Apni shakl ka portfolio — apne domain par live, 6 projects ke saath.</div>
+      </div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-w"><b>6</b><span>Week 9–10</span></div>
+      <div>
+        <h3>Module 6 — React Fundamentals</h3>
+        <div class="dur">2 hafte · 10 ghante</div>
+        <p>React kyun, components, JSX, props, state, useState, useEffect, lists with keys, event handling, Tailwind ke saath, aur pehla API fetch React mein.</p>
+        <div class="topics"><span>Vite setup</span><span>JSX</span><span>Components</span><span>Props</span><span>State</span><span>useEffect</span><span>Conditional render</span><span>Tailwind</span></div>
+        <div class="out"><b>Output:</b> React mein rebuilt portfolio — components alag files mein.</div>
+      </div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-w"><b>7</b><span>Week 11</span></div>
+      <div>
+        <h3>Module 7 — React Router &amp; Data</h3>
+        <div class="dur">1 hafta · 5 ghante</div>
+        <p>Multi-page app (React Router), custom hooks, loading aur error states, form handling, data fetch ke patterns (loading → success → error).</p>
+        <div class="topics"><span>React Router</span><span>Custom hooks</span><span>Loading/Error UI</span><span>Data fetching</span><span>Formik-lite</span></div>
+        <div class="out"><b>Output:</b> 3-page ka React app with working navigation + API data.</div>
+      </div>
+    </div>
+
+    <div class="mod">
+      <div class="mod-w"><b>8</b><span>Week 12</span></div>
+      <div>
+        <h3>Module 8 — Final Project + Deployment</h3>
+        <div class="dur">1 hafta · 6 ghante</div>
+        <p>Type 10 (web app) ka ek chhota project — task manager / dashboard with login mock, localStorage ya free API, aur proper deployment (Vercel/Netlify).</p>
+        <div class="topics"><span>App structure</span><span>Auth UI</span><span>CRUD</span><span>Deploy to Vercel</span><span>README</span></div>
+        <div class="out"><b>Output:</b> React dashboard app — live URL + GitHub par source code.</div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:18px">
+      <b>Time flexibility:</b> Har module 1–2 hafte ka hai lekin student agar roz sirf 1 ghanta de sakta hai to course 5–6 mahine mein poora hoga. Zaroori hai <em>sequence</em> — Module 4 ke baghair Module 6 (React) shuru na ho. Student ka josh 3 mahine baad toot-na sab se aam masla hai; is liye "2 din ka ek chhota project" rule rakhein.
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 6: REACT ================= -->
+<section id="react">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PART 06 —</span>
+      <h2>React Phase — Basics ke baad</h2>
+      <p class="sub">Ab tak student ne plain HTML/CSS/JS seekh liya hai. React us ka <em>natural next step</em> hai — lekin sirf tab jab portfolio project complete ho. Is part mein poora React setup, component ka concept aur aapka pehla React app hai.</p>
+    </div>
+
+    <div class="en-summary">
+      <b>English summary</b>
+      <p>React is the natural next step after vanilla JavaScript — but only after the student has shipped a complete vanilla project. React's core idea is splitting the page into reusable components that own their own state. Setup is one command, the component model takes about two weeks to click, and the payoff appears the moment the student builds their first dashboard.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:24px">
+      <div class="panel">
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7v7H4zM13 4h7v4h-7zM13 11h7v9h-7zM4 14h7v6H4z"/></svg> Vanilla JS mein</h4>
+        <p style="font-size:14px">Ek badi HTML file. Sab kuch ek jagah. Naya section add karo to wahi file phat jaati hai. 500 line cross karte hi maintenance mushkil ho jata hai.</p>
+      </div>
+      <div class="panel g">
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg> React mein</h4>
+        <p style="font-size:14px">Page chhote components mein toot jaata hai. Har component apna data (state) rakhta hai. Button wala component 5 jagah use ho sakta hai — ek jagah change karo, sab jagah badla.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px;margin-bottom:14px">Component ka concept — ek nazar</h3>
+    <div class="panel" style="margin-bottom:18px;padding:26px">
+      <svg viewBox="0 0 700 280" style="width:100%;height:auto;max-width:700px;display:block;margin:0 auto" role="img" aria-label="React component tree">
+        <g stroke="#d8d2c4" stroke-width="1.5" fill="none">
+          <path d="M350 48V74"/><path d="M90 74H620"/><path d="M90 74V100"/><path d="M260 74V100"/><path d="M445 74V100"/><path d="M620 74V100"/>
+          <path d="M445 138V170"/><path d="M415 170H525"/><path d="M415 170V200"/><path d="M525 170V200"/>
+        </g>
+        <rect x="280" y="8" width="140" height="40" rx="10" fill="#2f6f5e" stroke="#2f6f5e"/>
+        <text x="350" y="33" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#fff">App</text>
+        <rect x="20" y="100" width="140" height="38" rx="9" fill="#fff" stroke="#e9e3d6"/>
+        <text x="90" y="124" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" fill="#14171e">Navbar</text>
+        <rect x="190" y="100" width="140" height="38" rx="9" fill="#fff" stroke="#e9e3d6"/>
+        <text x="260" y="124" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" fill="#14171e">Hero</text>
+        <rect x="360" y="100" width="170" height="38" rx="9" fill="#fff" stroke="#e9e3d6"/>
+        <text x="445" y="124" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" fill="#14171e">ProjectList</text>
+        <rect x="560" y="100" width="120" height="38" rx="9" fill="#fff" stroke="#e9e3d6"/>
+        <text x="620" y="124" text-anchor="middle" font-family="Outfit, sans-serif" font-size="13" fill="#14171e">Footer</text>
+        <rect x="360" y="200" width="110" height="36" rx="9" fill="#f7f5f0" stroke="#e9e3d6"/>
+        <text x="415" y="223" text-anchor="middle" font-family="Outfit, sans-serif" font-size="12.5" fill="#3a4256">Card 1</text>
+        <rect x="470" y="200" width="110" height="36" rx="9" fill="#f7f5f0" stroke="#e9e3d6"/>
+        <text x="525" y="223" text-anchor="middle" font-family="Outfit, sans-serif" font-size="12.5" fill="#3a4256">Card 2</text>
+      </svg>
+      <p style="font-size:14px;color:var(--muted);text-align:center;margin:14px 0 0"><code>ProjectList</code> sirf data rakhta hai, <code>Card</code> sirf dikhata hai. Data badalna ho to sirf List badlein — Cards ko haath nahi lagana.</p>
+    </div>
+
+    <div class="split">
+      <div>
+        <h3 style="font-size:17px;margin-bottom:10px">React setup — 3 commands</h3>
+        <pre><code>npm create vite@latest my-app -- --template react
+cd my-app
+npm install
+npm run dev</code></pre>
+        <p style="font-size:14px">Terminal mein <code>npm run dev</code> chalane par browser mein <code>localhost:5173</code> khul jayega. Ab har file change par turant update ho jayega.</p>
+        <h3 style="font-size:17px;margin:22px 0 10px">Pehla component — counter</h3>
+        <pre><code><span class="c">// src/App.jsx</span>
+<span class="k">import</span> { useState } <span class="k">from</span> <span class="s">"react"</span>;
+
+<span class="k">function</span> <span class="t">Counter</span>() {
+  <span class="k">const</span> [count, setCount] = <span class="t">useState</span>(0);
+
+  <span class="k">return</span> (
+    <span class="p">&lt;div&gt;</span>
+      <span class="p">&lt;p&gt;</span>Count: {count}<span class="p">&lt;/p&gt;</span>
+      <span class="p">&lt;button</span> <span class="k">onClick</span><span class="p">=</span>{() =&gt; setCount(count + 1)}&gt;</span>
+        Badhaayein
+      <span class="p">&lt;/button&gt;</span>
+    <span class="p">&lt;/div&gt;</span>
+  );
+}
+
+<span class="k">export default</span> Counter;</code></pre>
+      </div>
+      <div>
+        <h3 style="font-size:17px;margin-bottom:10px">Props aur State — farq samjhein</h3>
+        <div class="tbl-wrap">
+          <table style="min-width:auto">
+            <thead><tr><th></th><th>Props</th><th>State</th></tr></thead>
+            <tbody>
+              <tr><td><b>Kaun deta hai</b></td><td>Parent component</td><td>Component khud</td></tr>
+              <tr><td><b>Badalta hai?</b></td><td>Nahi (read-only)</td><td>Haan (setState)</td></tr>
+              <tr><td><b>Analogy</b></td><td>Bheja hua input</td><td>Component ka apna haal</td></tr>
+              <tr><td><b>Syntax</b></td><td><code>&lt;Card title="Hi" /&gt;</code></td><td><code>useState(0)</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 style="font-size:17px;margin:22px 0 10px">Kab React use karein?</h3>
+        <ul style="font-size:14.5px">
+          <li><strong>React use karo:</strong> jab page ke sections repeat hon, state zyada ho, ya app ban rahi ho (dashboard, cart, admin panel).</li>
+          <li><strong>Plain HTML/CSS use karo:</strong> jab ek simple page ho — portfolio, landing page, brochure. React wahan <em>extra kaam</em> hai, fayda nahi.</li>
+          <li><strong>Sirf Tailwind/JS:</strong> jab design-focused static site ho — speed aur simple rakhte hain.</li>
+        </ul>
+        <div class="warn" style="margin-top:14px"><b>Sab se aam ghalti:</b> Student React isliye seekhta hai kyon ke "market mein React hai" — lekin pehle 2 projects plain HTML/CSS mein banana zaroori hai. Bina JS ke React seekhna = bina gram ke guitar. React ka kaam samajhne ke liye pehle JS aana chahiye.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 7: PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PART 07 —</span>
+      <h2>Practice Projects — Badhta hua saar</h2>
+      <p class="sub">Har project pichle ka kaam <em>apne andar</em> rakhta hai. Student ko har project ke baad apna kaam deploy karwaana hai — bina deploy kiye website banayi hui website nahi maani jati.</p>
+    </div>
+
+    <div class="en-summary">
+      <b>English summary</b>
+      <p>Six projects in increasing difficulty, each one containing every skill from the previous. Rule: build it, deploy it, then explain it out loud in two minutes. Explaining the code aloud is what turns copied code into understood code. The first three projects are enough to build a complete portfolio for freelance work.</p>
+    </div>
+
+    <div class="ladder">
+      <div class="rung">
+        <span class="rn">1</span>
+        <div>
+          <h4>Personal Portfolio</h4>
+          <p>HTML, CSS, thoda JS — responsive, mobile menu, dark mode</p>
+        </div>
+        <div class="meta">3 din · static<br>Type 2</div>
+      </div>
+      <div class="rung">
+        <span class="rn">2</span>
+        <div>
+          <h4>Restaurant Landing Page</h4>
+          <p>Menu section, image gallery, reservation form, Google Maps embed</p>
+        </div>
+        <div class="meta">3 din · static<br>Type 3</div>
+      </div>
+      <div class="rung">
+        <span class="rn">3</span>
+        <div>
+          <h4>Blog with Dark Mode</h4>
+          <p>Multiple pages, categories, theme toggle + localStorage, search filter</p>
+        </div>
+        <div class="meta">4 din · JS<br>Type 4</div>
+      </div>
+      <div class="rung">
+        <span class="rn">4</span>
+        <div>
+          <h4>Weather App</h4>
+          <p>Live API (OpenWeather), search city, loading + error states, 5-day forecast</p>
+        </div>
+        <div class="meta">4 din · API<br>Type 8</div>
+      </div>
+      <div class="rung">
+        <span class="rn">5</span>
+        <div>
+          <h4>Product Catalog (React)</h4>
+          <p>Components, props, state, filtering + sorting, cart with localStorage</p>
+        </div>
+        <div class="meta">1 hafta · React<br>Type 7</div>
+      </div>
+      <div class="rung">
+        <span class="rn">6</span>
+        <div>
+          <h4>Task Manager Dashboard (React)</h4>
+          <p>Login screen, dashboard, add/edit/delete tasks, filter by status, React Router</p>
+        </div>
+        <div class="meta">1–2 hafte · React<br>Type 10</div>
+      </div>
+    </div>
+
+    <div class="split" style="margin-top:22px">
+      <div class="panel">
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.2L21 10l-5.4 4 1.6 6.8L12 16.9 6.8 20.8 8.4 14 3 10l6.6-1.8z"/></svg> Har project ke baad ka rule</h4>
+        <ul style="font-size:14px;margin:0">
+          <li><strong>Deploy karo</strong> — live URL kaam ka hissa hai</li>
+          <li><strong>2 minute samjhao</strong> — bina code dekhe, kisi ko batao ke yeh website kaise bani</li>
+          <li><strong>Ek bug theek karo</strong> jo aapne khud pakda ho</li>
+          <li><strong>README likho</strong> — kya hai, kaise chalana hai</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Project choote waqt dhyan rakhein</h4>
+        <ul style="font-size:14px;margin:0">
+          <li>Sirf woh project jo <strong>khud kaam kar raha ho</strong> — half-done project se behtar hai ek chhota complete project</li>
+          <li>Content apni zindagi se lo (apni bakery, apna university, apna sheher) — copy-paste templates se seekh nahi aata</li>
+          <li>Har project ke end par <strong>ek naya bug</strong> khud introduce karein aur theek karein — yehi asli practice hai</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 8: MISTAKES ================= -->
+<section id="mistakes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PART 08 —</span>
+      <h2>Common Ghaltiyan (Inse Bachayein)</h2>
+      <p class="sub">Yeh 10 ghaltiyan <em>har</em> beginner karta hai. Agar student inhein bach le to uski speed do guna ho jati hai. Har ghalti ke neeche "sahi tareeqa" likha hai — isay notebook mein note karwaayein.</p>
+    </div>
+
+    <div class="en-summary">
+      <b>English summary</b>
+      <p>These ten mistakes are the ones that slow beginners down the most — desktop-only design, unoptimised images, no Git, chaotic file naming, writing HTML and CSS at the same time, and never opening the console. Each entry below pairs the mistake with the correct practice, so it doubles as a self-review checklist for every project.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Ghalti</th><th>Sahi tareeqa</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><b>Sirf desktop par design</b></td><td>Mobile-first CSS — pehle phone ka layout, phir media queries se bada</td></tr>
+          <tr><td>2</td><td><b>HTML aur CSS ek saath likhna</b></td><td>Pehle poora HTML (content ke saath), phir poora CSS, phir JS</td></tr>
+          <tr><td>3</td><td><b>Console kholna hi nahi</b></td><td>Har page kholte hi F12 → Console. Red error = ruk jayein</td></tr>
+          <tr><td>4</td><td><b>Original size ki images</b></td><td>WebP format, <code>loading="lazy"</code>, <code>max-width:100%</code></td></tr>
+          <tr><td>5</td><td><b>Git use na karna</b></td><td>Har kaam ke baad commit — 5 minute ka kaam, bug aaye to 1 click wapas</td></tr>
+          <tr><td>6</td><td><b>File naming: final2.html</b></td><td>Naam apne kaam ke mutabiq — <code>about.html</code>, <code>style.css</code></td></tr>
+          <tr><td>7</td><td><b>Folder structure adhoora</b></td><td>css/, js/, images/ folders pehle se — baad mein sort karna mushkil</td></tr>
+          <tr><td>8</td><td><b>Samajhe bina copy-paste</b></td><td>Har code block ko type karne ke baad 2 minute mein explain karein</td></tr>
+          <tr><td>9</td><td><b>Alt text aur labels chhorr dena</b></td><td>Har image par <code>alt</code>, har input par <code>&lt;label&gt;</code> — yehi accessibility hai</td></tr>
+          <tr><td>10</td><td><b>Deploy karna hi nahi</b></td><td>Har project ke end par deploy — doosrona tayyar karta hai, shayad nahi</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:18px">
+      <b>Teacher ka tareeqa:</b> Har hafte ka review session 20 minute ka rakhein. Student ko sirf yehi table dikhayein aur kahein "in 10 mein se kaun se 3 aapne kiye?" — is se khud ka review seekh jata hai aur aapko har baar lecture nahi deni parti.
+    </div>
+  </div>
+</section>
+
+<!-- ================= PART 9: ROUTINE + RESOURCES ================= -->
+<section id="resources">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PART 09 —</span>
+      <h2>Rozana Ka Routine, Resources &amp; Aage</h2>
+      <p class="sub">Skill tab banti hai jab roz practice ho. Is part mein student ka daily routine, free resources, certificate ka tareeqa aur freelancing/kaam ke options hai.</p>
+    </div>
+
+    <div class="en-summary">
+      <b>English summary</b>
+      <p>Consistency beats intensity: ninety focused minutes daily outperforms six hours on Sunday. The resources listed below are all free and self-paced. A free, verifiable certificate from freeCodeCamp gives the student something to put on a CV, and the first three projects are enough to start small freelance work.</p>
+    </div>
+
+    <div class="split" style="margin-bottom:22px">
+      <div class="panel">
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 90-minute daily routine</h4>
+        <div class="bench-row" style="grid-template-columns:96px 1fr 52px"><span class="label">Seekhna</span><div class="bar-bg"><div class="bar-fill" style="width:50%"></div></div><span class="val">30 min</span></div>
+        <div class="bench-row" style="grid-template-columns:96px 1fr 52px"><span class="label">Banana</span><div class="bar-bg"><div class="bar-fill" style="width:83%"></div></div><span class="val">45 min</span></div>
+        <div class="bench-row" style="grid-template-columns:96px 1fr 52px"><span class="label">Revise</span><div class="bar-bg"><div class="bar-fill" style="width:17%"></div></div><span class="val">15 min</span></div>
+        <p style="font-size:13.5px;color:var(--muted);margin:10px 0 0">30 min naya seekhein (MDN, video), 45 min khud code karein, 15 min kal ka note likhein aur commit karein.</p>
+      </div>
+      <div class="panel g">
+        <h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Certificate kaise milega</h4>
+        <ul style="font-size:14px;margin:0 0 10px">
+          <li><strong>freeCodeCamp</strong> — "Responsive Web Design" aur "JavaScript Algorithms" certifications, free + verifiable link</li>
+          <li><strong>Scrimba</strong> — interactive courses, free</li>
+          <li><strong>GitHub profile</strong> — 6+ green squares = "GitHub verified" kaam (Student Pack bhi milta hai)</li>
+        </ul>
+        <p style="font-size:13.5px;color:var(--muted);margin:0">Asal certificate CV par <em>projects</em> hain — live links wale. Course certificate sirf supporting hai.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px;margin-bottom:12px">Free Resources — kahan se seekhein</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Resource</th><th>Kya milega</th><th>Kab</th></tr></thead>
+        <tbody>
+          <tr><td><b>MDN Web Docs</b><br><span style="color:var(--muted);font-size:12.5px">developer.mozilla.org</span></td><td>Har HTML tag, CSS property aur JS method ka reference. Sab se bharosa vahad</td><td>Week 1 se</td></tr>
+          <tr><td><b>freeCodeCamp</b></td><td>Full curriculum + certificate</td><td>Week 1 se</td></tr>
+          <tr><td><b>web.dev Learn</b></td><td>Responsive, accessibility, performance, SEO — bohat achi videos</td><td>Week 5+</td></tr>
+          <tr><td><b>Flexbox Froggy / Grid Garden</b></td><td>Games ke zariye Flexbox aur Grid seekhna — sabse asaan tareeqa</td><td>Week 3–4</td></tr>
+          <tr><td><b>javascript.info</b></td><td>JavaScript ka poori kitab, step by step</td><td>Week 6+</td></tr>
+          <tr><td><b>Can I Use</b></td><td>Check karna ke feature har browser mein chalega ya nahi</td><td>Hamesha</td></tr>
+          <tr><td><b>Frontend Mentor</b></td><td>Real UI designs ka practice — dikhne wale designs copy karna</td><td>Week 4+</td></tr>
+          <tr><td><b>Netflix / YouTube</b></td><td>FreeCodeCamp ya Traversy Media ke full courses</td><td>Side se</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:18px;margin:28px 0 12px">Iske baad kya? — 3 raaste</h3>
+    <div class="card-grid">
+      <article class="type-card">
+        <div class="tc-head"><span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></span><h3>Freelancing</h3><span class="pill p-easy">Sab se tez</span></div>
+        <p class="tc-desc">Pehle simple kaam lo: landing page, portfolio, WordPress site, menu ka redesign. Fiverr/Upwork ya seedhi local businesses se baat karo. Tabhi 3 portfolio projects ke saath apply karo.</p>
+        <dl class="kv">
+          <div><dt>Pehla kaam</dt><dd>Landing page / one-page site</dd></div>
+          <div><dt>Tools</dt><dd>HTML, CSS, JS, WordPress</dd></div>
+          <div><dt>Client kaise milta hai</dt><dd>Portfolio + WhatsApp + local dukandar</dd></div>
+        </dl>
+      </article>
+      <article class="type-card">
+        <div class="tc-head"><span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M9 7V5a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></span><h3>Job (Front-End Developer)</h3><span class="pill p-med">Medium</span></div>
+        <p class="tc-desc">Company mein React, testing, Git workflow aur teamwork seekhna hoti hai. Is liye React + Git zaroor seekhein. Portfolio + 3 live projects CV par lagayein.</p>
+        <dl class="kv">
+          <div><dt>Chahiye hoga</dt><dd>HTML, CSS, JS, React, Git, basics of API</dd></div>
+          <div><dt>CV par</dt><dd>3 live projects + certificate + GitHub</dd></div>
+          <div><dt>Interview</dt><dd>CSS questions zaroor poochhe jate hain</dd></div>
+        </dl>
+      </article>
+      <article class="type-card">
+        <div class="tc-head"><span class="tc-ic"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5"/><path d="M5 8v13h14V8"/></svg></span><h3>Apna Product / Business</h3><span class="pill p-hard">Mushkil</span></div>
+        <p class="tc-desc">Student ka apna chhota business — bakery ka order system, tuition ka portal, shop ka site. Type 3 se 10 ke darmiyan koi bhi type ho sakta hai.</p>
+        <dl class="kv">
+          <div><dt>Type</dt><dd>Landing → e-commerce → web app</dd></div>
+          <div><dt>Pehla qadam</dt><dd>Landing page se customers test karein</dd></div>
+          <div><dt>Zaroori</dt><dd>SEO, mobile, WhatsApp integration</dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <div class="note" style="margin-top:22px">
+      <b>Aakhri baat:</b> Website banana ek baar ka kaam nahi — pehli 5 websites ghurbat hongi, yeh normal hai. Student ko yeh batayein ke ghaltiyan seekhne ka tareeqa hain, is liye har project ke baad "2 minute explain" ka rule sab se zaroori hai. <strong>6 mahine baad jab yeh student khud kisi aur ko sikha raha hoga, tab yeh poora kaam ho jayega.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APPENDIX ================= -->
+<section id="cheatsheet">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">APPENDIX —</span>
+      <h2>Command Cheat Sheet</h2>
+      <p class="sub">Ek saaf copy-paste sheet — isay print karein aur student ke desk par rakhein. In commands ke baghair project ka koi kaam nahi chalta.</p>
+    </div>
+
+    <div class="split">
+      <div>
+        <h3 style="font-size:16px;margin-bottom:8px">Git — roz ka kaam</h3>
+        <pre><code>git status              <span class="c"># kya badla hai?</span>
+git add .               <span class="c"># sab stage karo</span>
+git commit -m "msg"     <span class="c"># save point banao</span>
+git push                <span class="c"># GitHub par bhejo</span>
+git log --oneline       <span class="c"># purana kaam dekho</span>
+
+git branch feature-x    <span class="c"># naya branch</span>
+git switch feature-x    <span class="c"># branch par jao</span>
+git switch main         <span class="c"># wapas aao</span>
+git merge feature-x     <span class="c"># jorr do</span>
+
+git checkout .          <span class="c"># sab changes wapas (danger!)</span></code></pre>
+      </div>
+      <div>
+        <h3 style="font-size:16px;margin-bottom:8px">Node / npm — React phase</h3>
+        <pre><code>node -v                <span class="c"># Node installed hai?</span>
+npm -v                 <span class="c"># npm version</span>
+
+npm create vite@latest my-app -- --template react
+cd my-app
+npm install
+npm run dev             <span class="c"># localhost:5173</span>
+npm run build           <span class="c"># production build</span>
+npm run preview         <span class="c"># build preview</span></code></pre>
+        <h3 style="font-size:16px;margin:20px 0 8px">Folder mein jaldi jana</h3>
+        <pre><code>cd my-website      <span class="c"># folder mein jao</span>
+ls                <span class="c"># files dekho</span>
+mkdir images       <span class="c"># naya folder</span>
+code .             <span class="c"># VS Code mein kholo</span></code></pre>
+      </div>
+    </div>
+
+    <div class="warn" style="margin-top:20px"><b>Ek hikayat:</b> Terminal mein <code>rm</code>, <code>del</code> ya <code>rm -rf</code> kabhi mat chalayein jab tak poori tarah samajh na aaye — ek galti se poora project folder khatam ho sakta hai. Aur kabhi bhi <code>git commit</code> se pehle <code>git status</code> zaroor dekh lein.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <h4>Yehi guide</h4>
+      <p class="foot-note">Complete website course — types se le kar live deploy tak. Roman Urdu + English summary ke saath, taake student ko apni bhasha mein samajh aaye aur terms English mein rahein.</p>
+    </div>
+    <div>
+      <h4>Page map</h4>
+      <a href="#types">01 — Website ke Types</a>
+      <a href="#setup">02 — Complete Setup</a>
+      <a href="#build">03 — Banane ka Tareeqa</a>
+      <a href="#recipe">04 — 7 Din Plan</a>
+    </div>
+    <div>
+      <h4>Aur</h4>
+      <a href="#roadmap">05 — 12-Week Curriculum</a>
+      <a href="#react">06 — React Phase</a>
+      <a href="#projects">07 — Practice Projects</a>
+      <a href="#mistakes">08 — Common Ghaltiyan</a>
+      <a href="#resources">09 — Routine &amp; Resources</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+.rv{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease}
+.rv.in{opacity:1; transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none} html{scroll-behavior:auto}}
+</style>
+
+<script>
+(function(){
+  var bar = document.getElementById('bar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = (h.scrollHeight - h.clientHeight) || 1;
+    bar.style.width = (h.scrollTop / max * 100) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function spy(){
+    var y = window.scrollY + 120, active = 0;
+    sections.forEach(function(s,i){ if(s && s.offsetTop <= y) active = i; });
+    links.forEach(function(a,i){ a.classList.toggle('active', i === active); });
+  }
+  window.addEventListener('scroll', spy, {passive:true});
+  window.addEventListener('resize', spy);
+  spy();
+
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  burger.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  nav.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') {
+      nav.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = Array.prototype.slice.call(document.querySelectorAll('section .type-card, section .mod, section .rung, section .panel, section .en-summary'));
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
+    els.forEach(function(e,i){ e.classList.add('rv'); e.style.transitionDelay = (i % 6) * 40 + 'ms'; io.observe(e); });
+  }
+})();
+</script>
+</body>
+</html>

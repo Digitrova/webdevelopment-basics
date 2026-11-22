@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GitHub se Vercel tak website live karne ka complete Roman Urdu guide — commands, DNS, common errors aur solutions.">
+  <title>Deploy Guide — Web Development (GitHub se Vercel tak)</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/learning.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    .doc { padding: 48px 0 64px; }
+    .doc h1 { font-size: clamp(26px, 4vw, 38px); margin-bottom: 14px; }
+    .doc h2 {
+      font-size: 22px; margin: 44px 0 10px; padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+    .doc h3 { font-size: 16.5px; margin: 26px 0 8px; }
+    .doc p { font-size: 15.5px; margin-bottom: 12px; max-width: 78ch; }
+    .doc ul, .doc ol { font-size: 15.3px; margin: 0 0 14px; padding-left: 22px; }
+    .doc li { margin-bottom: 7px; }
+    .doc code {
+      background: rgba(47, 111, 94, .1); color: var(--primary);
+      padding: .12em .42em; border-radius: 5px; font-size: .87em;
+      border: 1px solid rgba(47, 111, 94, .14);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+    }
+    .doc pre {
+      background: var(--code-bg, #1f2428); color: #e6e3dc;
+      border-radius: 14px; padding: 16px 18px; overflow-x: auto;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 13.2px; line-height: 1.7; margin: 0 0 16px;
+      border: 1px solid #2c3238;
+    }
+    .doc pre code { background: none; border: 0; padding: 0; color: inherit; font-size: inherit; }
+    .doc blockquote {
+      margin: 0 0 16px; padding: 14px 18px; border-left: 3px solid var(--primary);
+      background: rgba(47, 111, 94, .06); border-radius: 0 12px 12px 0;
+      font-size: 15px; color: var(--text);
+    }
+    .doc hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+    .doc .table-scroll { margin: 0 0 18px; }
+    .doc .mistake-table td:nth-child(3) { color: var(--text); }
+    .doc .check-list { list-style: none; padding-left: 0; }
+    .doc .check-list li {
+      padding: 8px 0 8px 30px; position: relative;
+      border-bottom: 1px dashed var(--line);
+    }
+    .doc .check-list li::before {
+      content: "☐"; position: absolute; left: 4px; top: 7px;
+      font-size: 16px; color: var(--primary);
+    }
+    .doc-top {
+      background: rgba(47, 111, 94, .06); border-bottom: 1px solid var(--line);
+      padding: 26px 0;
+    }
+    .doc-top .lp-links { margin-top: 16px; }
+    @media (max-width: 620px) { .doc { padding: 34px 0 46px; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">WD</span>
+        <span class="logo-text">Web Development</span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu kholein" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="learning.html">Learning Path</a>
+        <a href="course-guide.html">Poori Guide</a>
+        <a href="deploy-guide.html">Deploy Guide</a>
+        <button class="theme-btn" id="themeBtn" title="Theme badlein">Theme</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="doc-top">
+    <div class="container">
+      <p class="eyebrow">Deployment</p>
+      <h1 style="font-size:clamp(24px,3.4vw,34px);margin:0">GitHub se Vercel tak — complete live deploy</h1>
+      <div class="lp-links">
+        <a href="index.html" class="btn btn-outline">← Website</a>
+        <a href="learning.html" class="btn btn-outline">Learning Path</a>
+        <a href="course-guide.html" class="btn btn-primary">Poori visual guide</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="doc">
+    <div class="container">
+<h1>GitHub → Vercel — Complete Live Deploy Guide</h1>
+<p>Yeh guide un students ke liye hai jinhon ne abhi website bana li hai aur ab use <strong>live</strong> karna hai — yaani apna URL banana hai jo koi bhi khol sake.</p>
+<p><strong>Cheezein jo chahiye (3):</strong></p>
+<div class="table-scroll"><table class="mistake-table"><thead><tr><th>#</th><th>Kya</th><th>Kyun</th><th>Kahan se</th></tr></thead><tbody><tr><td>1</td><td><strong>GitHub account</strong></td><td>Website ka code yahan store hota hai</td><td>github.com — free</td></tr><tr><td>2</td><td><strong>Vercel account</strong></td><td>Woh service jo GitHub ka code uth kar website live karti hai</td><td>vercel.com — GitHub se sign up karein, free</td></tr><tr><td>3</td><td><strong>Git</strong> (ya GitHub Desktop)</td><td>Code ko GitHub tak bhejne ka kaam</td><td>git-scm.com ya github.com/desktop</td></tr></tbody></table></div>
+<blockquote><strong>Ek hi baat samajh lein:</strong> GitHub = code ka safe khana (backup + version control). Vercel = woh jagah jahan website chalti hai. Aap code GitHub par daalte hain, Vercel usay uth kar live kar deta hai. Bas.</blockquote>
+<hr>
+<h2>PART A — Local taiyari (5 minute)</h2>
+<h3>A1. Check karein Git installed hai</h3>
+<p>Terminal kholein:</p>
+<ul><li><strong>Windows:</strong> <code>Win + R</code> → <code>cmd</code> → Enter</li><li><strong>Mac:</strong> Terminal app (Applications → Utilities)</li><li><strong>Linux:</strong> <code>Ctrl + Alt + T</code></li></ul>
+<pre><code class="lang-bash">git --version</code></pre>
+<p>Jawab aana chahiye jaise <code>git version 2.43.0</code>. Agar "command not found" aaye to Git install karein: <strong>git-scm.com</strong> → download → install (default settings).</p>
+<h3>A2. Apni website ki files check karein</h3>
+<p><code>my-website</code> folder ko khol kar dekhein. Usme sirf <strong>3 cheezein</strong> honi chahiye:</p>
+<pre><code class="lang-">my-website/
+├── index.html        ← website ka main page
+├── css/style.css     ← styling
+├── js/main.js        ← JavaScript
+├── vercel.json       ← Vercel ka config (pehle se hai)
+└── .gitignore        ← Git ka config (pehle se hai)</code></pre>
+<p><strong>Zaroori:</strong> <code>index.html</code> folder ke andar hi ho. Agar <code>my-website/my-website/index.html</code> ho raha hai to ek folder zyada hai — usay theek karein.</p>
+<h3>A3. Website khol kar dekhein (sanity check)</h3>
+<p><code>index.html</code> par double-click karein — browser khul jana chahiye. Styling aur buttons kaam karne chahiye. <strong>Agar kuch theek nahi hai to abhi theek karein, deploy karne ke baad nahi.</strong> Deploy ke baad har change dobara push karna padta hai.</p>
+<hr>
+<h2>PART B — GitHub par repository banana (10 minute)</h2>
+<h3>B1. GitHub account</h3>
+<p><strong>github.com</strong> kholein → <strong>Sign up</strong> → free account banayein. Email verify zaroor karein.</p>
+<h3>B2. Naya repository (khaali)</h3>
+<ol><li>Apne profile → top-right <strong>+</strong> → <strong>New repository</strong></li><li>Naam likhein — <code>my-website</code> (ya koi bhi naam)</li><li><strong>Public</strong> chunein (taake Vercel aur share dono asaan rahein)</li><li>☑️ <strong>Add a README file</strong> — <strong>UNCHECK</strong> karein (sirf is liye taake pehla push na tootte)</li><li>☑️ <strong>Add .gitignore</strong> — <strong>UNCHECK</strong> karein (humara apna <code>.gitignore</code> already hai)</li><li><strong>Create repository</strong></li></ol>
+<p>Ab aapko ek <strong>quick setup</strong> page dikhega jisme commands diye honge — woh agli step mein kaam aayenge.</p>
+<h3>B3. Apna naam aur email Git mein set karein (ek baar)</h3>
+<pre><code class="lang-bash">git config --global user.name &quot;Your Name&quot;
+git config --global user.email &quot;ali@example.com&quot;</code></pre>
+<blockquote>Email wahi likhein jo GitHub account se jodi hui hai — warna commit "unverified" dikh jayenge.</blockquote>
+<h3>B4. Code GitHub par bhejein</h3>
+<p>Terminal mein <code>my-website</code> folder ke <strong>andar</strong> jayein:</p>
+<pre><code class="lang-bash">cd path/to/my-website</code></pre>
+<p>*(Windows par example: <code>cd C:\Users\Ali\Desktop\my-website</code>)*</p>
+<p>Ab yeh commands ek-ek karke chalayein:</p>
+<pre><code class="lang-bash">git init
+git add .
+git commit -m &quot;Pehli website: portfolio starter&quot;
+git branch -M main
+git remote add origin https://github.com/USERNAME/my-website.git
+git push -u origin main</code></pre>
+<blockquote><code>USERNAME</code> wahan likhein jo aapke GitHub profile mein hai. <code>.git</code> wala folder ban jayega, <code>.gitignore</code> wali files automatically skip ho jayengi — yehi iska kaam hai.</blockquote>
+<h3>B5. Auth error aaye to?</h3>
+<p>Agar <code>git push</code> par yeh error aaye:</p>
+<pre><code class="lang-">fatal: could not read Username for &#x27;https://github.com&#x27;</code></pre>
+<p>to aapko <strong>Personal Access Token (PAT)</strong> chahiye:</p>
+<ol><li>GitHub → <strong>Settings</strong> (profile → Settings) → <strong>Developer settings</strong> (bottom left)</li><li><strong>Personal access tokens → Tokens (classic) → Generate new token (classic)</strong></li><li>Name likhein (<code>vercel-deploy</code>), Expiration: <strong>90 days</strong></li><li>Tick karo: ☑️ <strong><code>repo</code></strong> (yeh sab se zaroori hai)</li><li><strong>Generate token</strong> → token copy karein (sirf ek baar dikhta hai)</li><li>Wapas terminal mein — jab username puchhe: <strong>username</strong> = GitHub username, <strong>password</strong> = yahi token (apna asli password nahi!)</li></ol>
+<blockquote><strong>Aasan raasta (recommended):</strong> agar terminal se pareshan ho to <strong>GitHub Desktop</strong> install kar lein (github.com/desktop). Woh poori Git ki jagah le leta hai — aap bas folder kholte hain aur <strong>"Publish branch"</strong> button daba dete hain. B4 ka kaam 3 clicks mein ho jata hai.</blockquote>
+<p><strong>Verify:</strong> browser mein apna GitHub repo kholein — <code>index.html</code>, <code>css/</code>, <code>js/</code> wahan honi chahiye. ✅</p>
+<hr>
+<h2>PART C — Vercel se live karna (10 minute)</h2>
+<h3>C1. Vercel account</h3>
+<p><strong>vercel.com</strong> kholein → <strong>Sign Up</strong> → <strong>Continue with GitHub</strong> se sign up karein (wahi GitHub account jo upar use kiya).</p>
+<blockquote><strong>Zaroori:</strong> Vercel ko apne GitHub ka access chahiye — is liye <strong>"Continue with GitHub"</strong> zaroor chunein, email se nahi. Sign up ke baad GitHub par permission prompt aayega → <strong>"Authorize Vercel"</strong>.</blockquote>
+<h3>C2. Project import karein</h3>
+<ol><li>Dashboard → <strong>"Add New…"</strong> → <strong>Project</strong></li><li><strong>"Import"</strong> ke saath GitHub repositories ki list aayegi</li><li>Apni <code>my-website</code> repository par <strong>Import</strong> dabayein</li><li>Configure screen aayega — yeh bohat important hai:</li></ol>
+<div class="table-scroll"><table class="mistake-table"><thead><tr><th>Setting</th><th>Kya karein</th></tr></thead><tbody><tr><td><strong>Project Name</strong></td><td>Apna naam (is se URL banti hai)</td></tr><tr><td><strong>Framework Preset</strong></td><td><strong>Other</strong> (ya auto-detect ho jaye to theek hai)</td></tr><tr><td><strong>Root Directory</strong></td><td><strong>Khali chhorein</strong> (kyun ke <code>index.html</code> repo ke root mein hai)</td></tr><tr><td><strong>Install Command</strong></td><td><strong>Khali chhorein</strong></td></tr><tr><td><strong>Build Command</strong></td><td><strong>Khali chhorein</strong> ⚠️</td></tr><tr><td><strong>Output Directory</strong></td><td><strong>Khali chhorein</strong> ⚠️</td></tr></tbody></table></div>
+<ol><li><strong>Deploy</strong> dabayein</li></ol>
+<p><strong>Kyun Build/Output khali?</strong> Kyun ke yeh ek <strong>static website</strong> hai — koi build step nahi. Vercel khud <code>index.html</code> ko serve kar dega. Agar yahan kuch likh diya (jaise <code>npm run build</code>), to deploy fail ho jayega aur error aayega: *"The <code>build</code> command failed"*.</p>
+<h3>C3. Live URL!</h3>
+<p>30–60 second baad aapko ek URL mil jayega:</p>
+<pre><code class="lang-">https://my-website.vercel.app</code></pre>
+<p>Browser mein khol kar check karein — website live hai! 🎉</p>
+<h3>C4. Har push par auto-update</h3>
+<p>Ab se jab bhi aap <code>git push</code> karenge, Vercel <strong>automatically</strong> naya version live kar dega. Alag se kuch karne ki zaroorat nahi.</p>
+<p><strong>Preview bonus:</strong> GitHub mein koi bhi <strong>branch</strong> banayein ya Pull Request kholein — Vercel ek <strong>preview URL</strong> bana deta hai, jise aap kisi ko bhej kar test karwa sakte hain bina live site ko chhere.</p>
+<hr>
+<h2>PART D — Apna domain (custom URL)</h2>
+<p>Vercel par free subdomain (<code>my-website.vercel.app</code>) already mil gaya. Ab apna asli domain (jaise <code>mybakery.com</code>) lagana hai:</p>
+<h3>D1. Domain khareedein</h3>
+<p>GoDaddy, Namecheap ya Hostinger se — domain ka saal ka kiraya <strong>$8–15</strong> ke dastan hota hai. <code>.com</code> ya <code>.pk</code> lena behtar hai.</p>
+<h3>D2. Vercel mein add karein</h3>
+<ol><li>Vercel dashboard → apna project → <strong>Settings</strong> → <strong>Domains</strong></li><li><strong>Add</strong> dabayein → apna domain likhein (<code>mybakery.com</code>) → <strong>Add</strong></li><li>Vercel aapko <strong>DNS settings</strong> dikha dega</li></ol>
+<h3>D3. DNS mein point karein</h3>
+<p>Jahan se domain kharida (GoDaddy/Namecheap), wahan jaayein → <strong>Domain → Manage → DNS</strong> aur Vercel ki di hui records daalein:</p>
+<div class="table-scroll"><table class="mistake-table"><thead><tr><th>Type</th><th>Name</th><th>Value</th></tr></thead><tbody><tr><td><strong>A</strong></td><td><code>@</code></td><td><code>76.76.21.21</code></td></tr><tr><td><strong>CNAME</strong></td><td><code>www</code></td><td><code>cname.vercel-dns.com</code></td></tr></tbody></table></div>
+<ol><li>Save karein aur wapas Vercel par aayein</li></ol>
+<h3>D4. Wait karein</h3>
+<p>DNS update hote hote <strong>5 minute se 48 ghante</strong> lag sakte hain (aam tor par 10–30 minute). Vercel khud check karta rehta hai — jaise hi verify hoga, <strong>"Valid"</strong> ka green tick aa jayega.</p>
+<p>SSL certificate <strong>automatic</strong> lag jata hai — <code>https://</code> khud chal shuru ho jata hai.</p>
+<hr>
+<h2>PART E — Common Errors aur Solution</h2>
+<div class="table-scroll"><table class="mistake-table"><thead><tr><th>Error / Masla</th><th>Wajah</th><th>Solution</th></tr></thead><tbody><tr><td><strong>"The <code>build</code> command failed"</strong></td><td>Build Command khaali nahi chhoda</td><td>Deploy settings → Build Command <strong>khali</strong> karo → Redeploy</td></tr><tr><td><strong>"No Output Directory named ..."</strong></td><td>Output Directory galat daal di</td><td>Output Directory <strong>khali</strong> karo → Redeploy</td></tr><tr><td><strong>404 Not Found</strong></td><td><code>index.html</code> repo root mein nahi</td><td>Root Directory <strong>khali</strong> karo, ya <code>index.html</code> ko repo root par rakho</td></tr><tr><td><strong>Repository list mein nahi dikh raha</strong></td><td>GitHub permission nahi mili</td><td>Vercel → Settings → Git → GitHub app dobara install/authorize</td></tr><tr><td><strong>CSS/JS load nahi ho raha (page plain)</strong></td><td>File ka path galat</td><td><code>href="css/style.css"</code> aur <code>src="js/main.js"</code> — folders wahi hone chahiye</td></tr><tr><td><strong><code>fatal: could not read Username</code></strong></td><td>Auth token nahi</td><td>Personal Access Token banayein (B5)</td></tr><tr><td><strong>Push ke baad site update nahi hui</strong></td><td>Vercel ka build fail hua</td><td>Vercel → <strong>Deployments</strong> → failed build par click → error dekhein</td></tr><tr><td><strong>Main branch ka naam <code>master</code> hai</strong></td><td>Git default</td><td><code>git branch -M main</code> chala kar push karein, phir Vercel settings → Branch <strong>main</strong> karein</td></tr><tr><td><strong>Domain "Invalid" rehta hai</strong></td><td>DNS propagate nahi hua</td><td>24 ghante wait karein; domain provider ke panel par records check karein</td></tr></tbody></table></div>
+<hr>
+<h2>PART F — Quick Alternative (agar Git bilkul na chal raha)</h2>
+<p>Sirf 2 minute mein, GitHub ke baghair:</p>
+<pre><code class="lang-bash">npx vercel</code></pre>
+<p>Yeh command poora folder Vercel par upload kar deti hai aur turant live URL de deti hai. (Login ke liye email se sign up karna hoga, ya <code>npx vercel login</code> chala kar.)</p>
+<p><strong>Nuqsan:</strong> is tarah site sirf Vercel par hai — GitHub par koi copy nahi, is liye backup nahi rahega. Is liye <strong>Part B (GitHub) zaroor karein</strong>; yeh sirf "abhi live karke dekhna ho" ke liye hai.</p>
+<hr>
+<h2>PART G — Final Checklist</h2>
+<p>Deploy hone ke baad yeh 8 cheezein check karein:</p>
+<ul class="check-list"><li> Website ka URL khol kar khul rahi hai</li><li> Mobile par bhi theek lag rahi hai (phone ke browser mein kholein)</li><li> Navigation ke sab links kaam kar rahe hain</li><li> Dark mode button theek chal raha hai</li><li> Contact form validation theek chal rahi hai</li><li> Browser console (F12 → Console) mein koi red error nahi</li><li> GitHub repo mein code mojood hai (backup)</li><li> Apni website ka link kisi ko bhej kar test kar liya</li></ul>
+<p><strong>Share karna ho to:</strong> Vercel dashboard → project → <strong>Share</strong> button se preview link copy karein, ya apna domain use karein.</p>
+<hr>
+<h2>Ek nateeja</h2>
+<div class="table-scroll"><table class="mistake-table"><thead><tr><th>Sawaal</th><th>Jawab</th></tr></thead><tbody><tr><td>Hosting ka kharcha?</td><td><strong>Free</strong> (Vercel ka free plan — static sites ke liye kaafi hai)</td></tr><tr><td>Kitni der mein live?</td><td>Import se ~<strong>1 minute</strong></td></tr><tr><td>Har change par kya karna hoga?</td><td>Sirf <code>git add .</code> → <code>git commit</code> → <code>git push</code> — Vercel khud update kar dega</td></tr><tr><td>GitHub ka kya faida?</td><td>Har purana version wapas mil jata hai + domain lagane ke liye Vercel ko zaroorat hai</td></tr></tbody></table></div>
+<p><strong>Abhi karne wala kaam:</strong> Part A → B → C. Part C ke baad website live hai. Baqi sab optional hai.</p>
+<hr>
+<h3>Optional: GitHub Actions se auto-deploy</h3>
+<p>Agar aap Vercel ke dashboard ke bajaye GitHub Actions se deploy karna chahte hain, to is kit ka <code>OPTIONAL-github-actions-deploy.yml</code> file dekhein. Isko <code>.github/workflows/deploy.yml</code> naam se rakhein aur GitHub ke <strong>Settings → Secrets → Actions</strong> mein <code>VERCEL_TOKEN</code> add karein. <strong>Hoshiyat:</strong> yeh file <code>my-website/</code> folder ke andar mat rakhein, warna pehle push par hi workflow error de dega (token nahi hoga). Default tareeqa (Part C) zyada simple aur mazboot hai.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Web Development — sab haqooq mehfooz.</p>
+      <p class="footer-note">
+        Pages: <a href="index.html">Home</a> · <a href="learning.html">Learning Path</a> ·
+        <a href="course-guide.html">Visual Guide</a> · <a href="deploy-guide.html">Deploy Guide</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
