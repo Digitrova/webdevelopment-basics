@@ -1,0 +1,31 @@
+# Node / npm
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Vercel
+.vercel
+
+# Git
+*.log
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Environment variables (kabhi push na karein)
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp

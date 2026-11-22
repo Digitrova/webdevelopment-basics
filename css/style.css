@@ -1,0 +1,303 @@
+/* ============================================================
+   PORTFOLIO STARTER — style.css
+   Yehi file CSS ka poora hissa hai. Neeche 8 hisse hain:
+   1) Variables (colors / sizes)
+   2) Base + Typography
+   3) Header / Navbar
+   4) Hero
+   5) Sections (About / Projects / Contact)
+   6) Buttons + Forms
+   7) Footer
+   8) Responsive (media queries)
+   ============================================================ */
+
+/* ---------- 1) VARIABLES ---------- */
+:root {
+  /* Colors — inhein ek jagah badal kar poori website ka rang badal sakte hain */
+  --bg:          #f7f5f0;
+  --bg-alt:      #ffffff;
+  --surface:     #ffffff;
+  --ink:         #14171e;
+  --text:        #3a4256;
+  --muted:       #7c7a72;
+  --line:        #e9e3d6;
+  --primary:     #2f6f5e;
+  --primary-2:   #4a8e7c;
+  --accent:      #c97b3f;
+
+  /* Sizes */
+  --container:   1080px;
+  --radius:      14px;
+  --radius-sm:   10px;
+  --gap:         24px;
+  --section-pad: 72px;
+
+  /* Shadow */
+  --shadow-s: 0 2px 8px rgba(0, 0, 0, .04);
+  --shadow-m: 0 4px 16px -2px rgba(0, 0, 0, .07);
+}
+
+/* Dark theme — JavaScript sirf body par "dark" class lagata hai */
+body.dark {
+  --bg:        #15181c;
+  --bg-alt:    #1b1f24;
+  --surface:   #1e2329;
+  --ink:       #f2f0ea;
+  --text:      #c4c8cf;
+  --muted:     #8b929c;
+  --line:      #2b3138;
+  --primary:   #4a8e7c;
+  --primary-2: #6fb39f;
+  --accent:    #d99a63;
+  --shadow-s: 0 2px 8px rgba(0, 0, 0, .3);
+  --shadow-m: 0 4px 16px -2px rgba(0, 0, 0, .4);
+}
+
+/* ---------- 2) BASE + TYPOGRAPHY ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Outfit", "Segoe UI", system-ui, sans-serif;
+  font-size: 16.5px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  transition: background .25s ease, color .25s ease;
+}
+
+h1, h2, h3 { color: var(--ink); line-height: 1.2; margin: 0; }
+h1 { font-size: clamp(32px, 5vw, 48px); letter-spacing: -.02em; }
+h2 { font-size: clamp(24px, 3vw, 32px); }
+h3 { font-size: 18px; }
+p  { margin: 0 0 14px; }
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+.section { padding: var(--section-pad) 0; }
+.section-alt { background: var(--bg-alt); }
+.section-title { margin-bottom: 6px; }
+.section-sub { color: var(--muted); margin-bottom: 30px; max-width: 60ch; }
+
+/* ---------- 3) HEADER / NAVBAR ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  transition: background .25s ease, border-color .25s ease;
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+}
+.logo { display: flex; align-items: center; gap: 10px; color: var(--ink); font-weight: 600; }
+.logo:hover { text-decoration: none; }
+.logo-mark {
+  width: 34px; height: 34px; border-radius: 10px;
+  background: var(--primary); color: #fff;
+  display: grid; place-items: center;
+  font-size: 13px; font-weight: 700; letter-spacing: .02em;
+}
+.logo-text { font-size: 16px; }
+
+.nav-links { display: flex; align-items: center; gap: 6px; }
+.nav-links a {
+  color: var(--text); font-size: 15px; font-weight: 500;
+  padding: 8px 13px; border-radius: 9px;
+  transition: background .18s, color .18s;
+}
+.nav-links a:hover { background: rgba(47, 111, 94, .09); color: var(--primary); text-decoration: none; }
+.nav-links a.active { color: var(--primary); background: rgba(47, 111, 94, .09); }
+
+.theme-btn {
+  margin-left: 10px; padding: 7px 14px; border-radius: 9px;
+  border: 1px solid var(--line); background: var(--surface);
+  color: var(--text); font-size: 14px; font-weight: 500; cursor: pointer;
+  font-family: inherit;
+  transition: border-color .18s, color .18s;
+}
+.theme-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+/* Hamburger button — default mein chhupa hua */
+.menu-btn {
+  display: none; width: 42px; height: 42px;
+  border: 1px solid var(--line); background: var(--surface);
+  border-radius: 10px; cursor: pointer; padding: 0;
+  flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+}
+.menu-btn span {
+  display: block; width: 18px; height: 2px; background: var(--ink);
+  border-radius: 2px; transition: transform .25s, opacity .2s;
+}
+.menu-btn.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-btn.open span:nth-child(2) { opacity: 0; }
+.menu-btn.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ---------- 4) HERO ---------- */
+.hero { padding: 88px 0 76px; }
+.hero-inner { max-width: 780px; }
+.eyebrow {
+  display: inline-block; margin: 0 0 18px;
+  font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(201, 123, 63, .1);
+  border: 1px solid rgba(201, 123, 63, .22);
+  padding: 6px 13px; border-radius: 99px;
+}
+.hero h1 { margin-bottom: 16px; }
+.hl { color: var(--primary); }
+.lead { font-size: 18px; max-width: 62ch; margin-bottom: 28px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ---------- 5) SECTIONS ---------- */
+/* ABOUT — CSS Grid, 2 columns */
+.about-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: start;
+}
+.about-text p { max-width: 60ch; }
+.skills {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-s);
+}
+.skills h3 { margin-bottom: 12px; font-size: 16px; }
+.skill-list { list-style: none; margin: 0; padding: 0; }
+.skill-list li {
+  padding: 9px 0 9px 26px; position: relative;
+  border-bottom: 1px dashed var(--line); font-size: 15px;
+}
+.skill-list li:last-child { border-bottom: 0; }
+.skill-list li::before {
+  content: ""; position: absolute; left: 4px; top: 17px;
+  width: 8px; height: 8px; border-radius: 50%; background: var(--primary);
+}
+
+/* PROJECTS — CSS Grid, 3 columns */
+.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+.project-card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-s);
+  transition: transform .2s, box-shadow .2s;
+}
+.project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-m); }
+.project-thumb {
+  height: 150px; display: grid; place-items: center;
+  border-bottom: 1px solid var(--line);
+}
+.project-thumb span {
+  font-size: 34px; font-weight: 700; color: rgba(255, 255, 255, .85);
+}
+.thumb-1 { background: linear-gradient(135deg, #2f6f5e, #4a8e7c); }
+.thumb-2 { background: linear-gradient(135deg, #c97b3f, #d99a63); }
+.thumb-3 { background: linear-gradient(135deg, #3a4256, #5b6479); }
+.project-body { padding: 18px; }
+.project-body h3 { margin-bottom: 6px; }
+.project-body p { font-size: 14.5px; color: var(--muted); }
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.project-tags span {
+  font-size: 11.5px; padding: 3px 9px; border-radius: 6px;
+  background: rgba(47, 111, 94, .09); color: var(--primary); font-weight: 500;
+}
+.link-arrow { font-size: 14.5px; font-weight: 500; }
+
+/* CONTACT — Grid, 2 columns */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.contact-list { list-style: none; padding: 0; margin: 0; }
+.contact-list li {
+  display: flex; gap: 16px; padding: 12px 0;
+  border-bottom: 1px dashed var(--line); font-size: 15px;
+}
+.contact-list li:last-child { border-bottom: 0; }
+.contact-list span {
+  width: 88px; flex: none; color: var(--muted); font-size: 14px;
+}
+
+/* ---------- 6) BUTTONS + FORMS ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 22px; border-radius: 11px;
+  font-size: 15px; font-weight: 600; font-family: inherit;
+  border: 1px solid transparent; cursor: pointer;
+  transition: transform .18s, background .18s, border-color .18s, color .18s;
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-2); }
+.btn-outline { background: transparent; border-color: var(--line); color: var(--ink); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-block { width: 100%; }
+
+.contact-form {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-s);
+}
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.field input, .field textarea {
+  width: 100%; padding: 11px 13px; font-size: 15px; font-family: inherit;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--bg); color: var(--ink);
+  transition: border-color .18s, box-shadow .18s;
+}
+.field input:focus, .field textarea:focus {
+  outline: none; border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(47, 111, 94, .13);
+}
+.error { display: block; color: #b04a4a; font-size: 13px; min-height: 17px; margin-top: 4px; }
+.form-status { font-size: 14px; color: var(--primary); margin: 12px 0 0; min-height: 20px; }
+
+/* ---------- 7) FOOTER ---------- */
+.site-footer {
+  border-top: 1px solid var(--line); background: var(--bg-alt);
+  padding: 30px 0; margin-top: 0;
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+}
+.site-footer p { margin: 0; font-size: 14px; color: var(--muted); }
+.footer-note { font-size: 13px !important; }
+.site-footer code {
+  background: rgba(47, 111, 94, .1); color: var(--primary);
+  padding: 1px 6px; border-radius: 5px; font-size: 12.5px;
+}
+
+/* ---------- 8) RESPONSIVE ---------- */
+/* Tablet — 768px se upar */
+@media (max-width: 900px) {
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* Mobile — 767px se neeche */
+@media (max-width: 767px) {
+  .section { padding: 52px 0; }
+  .hero { padding: 56px 0 48px; }
+  .menu-btn { display: flex; }
+
+  /* Mobile menu: pehle chhupa, JS ke class ke saath khul jata hai */
+  .nav-links {
+    display: none;
+    position: absolute; top: 68px; left: 0; right: 0;
+    flex-direction: column; align-items: stretch;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 16px 16px;
+    box-shadow: var(--shadow-m);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 11px 12px; }
+  .theme-btn { margin: 8px 0 0; width: 100%; }
+
+  .project-grid { grid-template-columns: 1fr; }
+  .contact-list li { flex-direction: column; gap: 2px; }
+  .contact-list span { width: auto; }
+}
+
+/* Chhote phone */
+@media (max-width: 420px) {
+  .hero-actions .btn { width: 100%; }
+}

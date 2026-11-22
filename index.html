@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student portfolio starter — HTML, CSS aur JavaScript se bani pehli website.">
+  <title>Portfolio Starter — Meri Pehli Website</title>
+
+  <!-- CSS ko HTML se alag file mein rakha gaya hai (good practice) -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Font CDN: Outfit (free, Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ============ HEADER / NAVBAR ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <a href="#home" class="logo">
+        <span class="logo-mark">AK</span>
+        <span class="logo-text">Ali Khan</span>
+      </a>
+
+      <!-- Mobile menu button: sirf chhote screen par dikhega -->
+      <button class="menu-btn" id="menuBtn" aria-label="Menu kholein" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-btn" id="themeBtn" title="Theme badlein">Theme</button>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <p class="eyebrow">Front-End Developer</p>
+        <h1>Main websites banata hoon jo <span class="hl">har phone par</span> theek chalti hain.</h1>
+        <p class="lead">
+          Yeh ek starter template hai — apna naam, apna text aur apne projects yahan daalein.
+          Har section ka comment dekh lein, taake aapko pata ho ke kahan badalna hai.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">Mere Projects dekhein</a>
+          <a href="#contact" class="btn btn-outline">Rabta karein</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section-title">Mere baare mein</h2>
+        <p class="section-sub">Yahan 2-3 lines mein likhein ke aap kaun hain aur aap kya karte hain.</p>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              Main ek junior front-end developer hoon. Mujhe HTML, CSS aur JavaScript
+              aata hai aur main responsive websites banata hoon — jo mobile, tablet
+              aur laptop sab par achi lagti hain.
+            </p>
+            <p>
+              <strong>Ise badal dein:</strong> yeh paragraph aapka apna introduction hai.
+              2-3 lines kaafi hain — zyada nahi.
+            </p>
+          </div>
+
+          <div class="skills">
+            <h3>Skills</h3>
+            <ul class="skill-list">
+              <li>HTML5 &amp; Semantic Markup</li>
+              <li>CSS3, Flexbox &amp; Grid</li>
+              <li>JavaScript (ES6+)</li>
+              <li>Responsive Design</li>
+              <li>Git &amp; GitHub</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section section-alt" id="projects">
+      <div class="container">
+        <h2 class="section-title">Mere Projects</h2>
+        <p class="section-sub">Har card mein project ka naam, chhota sa description aur link.</p>
+
+        <div class="project-grid">
+
+          <article class="project-card">
+            <div class="project-thumb thumb-1" aria-hidden="true"><span>01</span></div>
+            <div class="project-body">
+              <h3>Project ek ka naam</h3>
+              <p>Yahan 1-2 lines mein likhein ke yeh project kya karta hai.</p>
+              <div class="project-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+              <a href="#" class="link-arrow">Live demo dekhein &rarr;</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-thumb thumb-2" aria-hidden="true"><span>02</span></div>
+            <div class="project-body">
+              <h3>Doosra project</h3>
+              <p>Har card ka layout bilkul yahi rahega — sirf content badlein.</p>
+              <div class="project-tags"><span>HTML</span><span>CSS</span></div>
+              <a href="#" class="link-arrow">Live demo dekhein &rarr;</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-thumb thumb-3" aria-hidden="true"><span>03</span></div>
+            <div class="project-body">
+              <h3>Teesra project</h3>
+              <p>Grid layout ki wajah se teen cards ek line mein aa gaye.</p>
+              <div class="project-tags"><span>React</span><span>Tailwind</span></div>
+              <a href="#" class="link-arrow">Live demo dekhein &rarr;</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <h2 class="section-title">Rabta karein</h2>
+          <p class="section-sub">Form bhar ke bhejein — abhi sirf console mein dikhega. asli setup ke liye "Contact Form" section dekhein.</p>
+          <ul class="contact-list">
+            <li><span>Email</span><a href="mailto:ali@example.com">ali@example.com</a></li>
+            <li><span>Phone</span><a href="tel:+923001234567">+92 300 1234567</a></li>
+            <li><span>LinkedIn</span><a href="#">linkedin.com/in/username</a></li>
+            <li><span>GitHub</span><a href="#">github.com/username</a></li>
+          </ul>
+        </div>
+
+        <!-- Form validation JavaScript se connected hai -->
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Naam</label>
+            <input type="text" id="name" name="name" placeholder="Aapka naam" required>
+            <small class="error" id="nameError"></small>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="aap@example.com" required>
+            <small class="error" id="emailError"></small>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Apna message likhein..." required></textarea>
+            <small class="error" id="messageError"></small>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Bhejein</button>
+          <p class="form-status" id="formStatus"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Ali Khan — sab haqooq mehfooz.</p>
+      <p class="footer-note">Is template ko apni website ka banayein — <code>index.html</code>, <code>css/style.css</code> aur <code>js/main.js</code> sirf teen files hain.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript file ko HTML ke END mein load karna best practice hai -->
+  <script src="js/main.js"></script>
+</body>
+</html>
