@@ -1,0 +1,9 @@
+(() => {
+ const $=id=>document.getElementById(id);const form=$('authForm');let mode='login';
+ function message(t,error=false){$('message').textContent=t;$('message').classList.toggle('error',error);}
+ function setMode(next){mode=next;const signup=mode==='signup';$('nameField').hidden=!signup;$('formTitle').textContent=signup?'Create your student account.':'Welcome back.';$('formIntro').textContent=signup?'Your account and progress will be stored in this browser.':'Sign in to continue on this device.';$('submitBtn').textContent=signup?'Create account':'Sign in';$('switchText').textContent=signup?'Already have an account?':'New to Web Academy?';$('switchMode').textContent=signup?'Sign in':'Create an account';$('password').autocomplete=signup?'new-password':'current-password';message('');}
+ $('switchMode').addEventListener('click',e=>{e.preventDefault();setMode(mode==='login'?'signup':'login');});
+ $('forgotLink').addEventListener('click',e=>{e.preventDefault();message('Browser-only accounts have no email recovery. Ask the administrator on this device to reset your password.',true);});
+ form.addEventListener('submit',async e=>{e.preventDefault();const btn=$('submitBtn');btn.disabled=true;message('Please wait…');try{if(mode==='signup')await LMS.register({name:$('fullName').value,email:$('email').value,password:$('password').value});else await LMS.login($('email').value,$('password').value);location.href='student.html';}catch(err){message(err.message,true);}finally{btn.disabled=false;}});
+ if(LMS.currentUser)location.href=LMS.currentUser.role==='admin'?'admin.html':'student.html';
+})();
