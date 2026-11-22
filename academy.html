@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A structured 24-week web development academy: learn HTML, CSS, JavaScript, React, backend engineering, testing and deployment through practical projects.">
+  <meta name="theme-color" content="#0b1020">
+  <title>Web Academy — Learn. Build. Ship.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/academy.css">
+  <script src="js/academy.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Web Academy home"><span class="brand-mark">W</span><span>WEB<span class="brand-muted">ACADEMY</span></span></a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    <nav id="navMenu" class="nav-menu" aria-label="Main navigation">
+      <a href="#curriculum">Curriculum</a><a href="#playground">Playground</a><a href="#projects">Projects</a>
+      <a href="course-guide.html">Learning guide</a><a href="deploy-guide.html">Deploy guide</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle colour theme">◐</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> THE PRACTICAL WEB DEVELOPMENT TRACK</div>
+        <h1>Turn curiosity<br>into <span class="gradient-text">real-world skills.</span></h1>
+        <p class="hero-lead">A structured path from your first HTML element to building, testing and deploying production-minded web applications. Learn by shipping projects—not just watching tutorials.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#curriculum">Explore the curriculum <span>↗</span></a><a class="btn btn-quiet" href="#playground">Try the code playground</a></div>
+        <div class="hero-proof"><div class="avatar-stack"><i>H</i><i>C</i><i>JS</i></div><span>24 weeks · 6 stages · 8 portfolio projects</span></div>
+      </div>
+      <div class="hero-visual" aria-label="Illustration of a code editor">
+        <div class="visual-glow"></div>
+        <div class="editor-window">
+          <div class="editor-top"><div class="traffic"><b></b><b></b><b></b></div><span>your-first-app.jsx</span><span class="editor-live">● LIVE</span></div>
+          <div class="editor-body"><div class="line-numbers">01<br>02<br>03<br>04<br>05<br>06<br>07</div><pre><span class="code-purple">function</span> <span class="code-blue">BuildSomething</span>() {
+  <span class="code-purple">return</span> (
+    <span class="code-green">&lt;main&gt;</span>
+      <span class="code-green">&lt;h1&gt;</span>Hello, web.<span class="code-green">&lt;/h1&gt;</span>
+      <span class="code-green">&lt;p&gt;</span>Ideas into interfaces.<span class="code-green">&lt;/p&gt;</span>
+    <span class="code-green">&lt;/main&gt;</span>
+  );
+}</pre></div>
+          <div class="editor-bottom"><span>✓ No setup required to start learning</span><span>UTF-8</span></div>
+        </div>
+        <div class="float-card float-one"><span class="float-icon">⌘</span><div><b>Build-first learning</b><small>Practice every stage</small></div></div>
+        <div class="float-card float-two"><span class="float-icon green">↗</span><div><b>Track your progress</b><small>Saved on this device</small></div></div>
+      </div>
+    </section>
+
+    <section class="metrics shell" aria-label="Course overview">
+      <div><strong>24<span>w</span></strong><small>Structured roadmap</small></div><div><strong>06</strong><small>Learning stages</small></div><div><strong>08</strong><small>Portfolio projects</small></div><div><strong>01</strong><small>Goal: ship confidently</small></div>
+    </section>
+
+    <section class="dashboard shell" id="dashboard">
+      <div class="section-heading compact"><div><div class="eyebrow">YOUR LEARNING SPACE</div><h2>Progress, not perfection.</h2><p>Your checklist is stored in this browser. Come back to continue where you left off.</p></div><button class="text-button" id="resetProgress" type="button">Reset progress ↺</button></div>
+      <div class="progress-card">
+        <div class="progress-main"><div class="progress-ring" id="progressRing" role="img" aria-label="0 percent complete"><span id="progressPercent">0%</span></div><div><span class="overline">OVERALL COMPLETION</span><h3 id="progressTitle">Your journey starts here.</h3><p id="progressCaption">Complete a week to build momentum. Every step counts.</p></div></div>
+        <div class="progress-stats"><div><b id="weeksDone">0 / 24</b><span>Weeks completed</span></div><div><b id="stagesDone">0 / 6</b><span>Stages completed</span></div><div><b id="projectsDone">0 / 8</b><span>Projects shipped</span></div></div>
+      </div>
+    </section>
+
+    <section class="curriculum-section shell" id="curriculum">
+      <div class="section-heading"><div><div class="eyebrow">THE 24-WEEK ROADMAP</div><h2>One stage at a time.</h2><p>Follow the sequence. Each stage builds on the skills from the previous one.</p></div><div class="filter-wrap"><label for="stageFilter">Show stage</label><select id="stageFilter"><option value="all">All stages</option><option value="1">01 · Foundations</option><option value="2">02 · JavaScript</option><option value="3">03 · React</option><option value="4">04 · Backend</option><option value="5">05 · Engineering</option><option value="6">06 · Career</option></select></div></div>
+      <div id="stageList" class="stage-list">
+        <article class="stage-card" data-stage="1"><div class="stage-top"><span class="stage-number">01</span><span class="stage-duration">WEEKS 01—03</span><span class="stage-status">FOUNDATION</span></div><h3>Web foundations</h3><p>Understand how the web works and create accessible, responsive interfaces.</p><div class="week-list">
+          <label class="week-item"><input type="checkbox" data-week="1"><span><b>Week 01 · How the web works</b><small>Browsers, servers, HTTP, URLs, developer tools and semantic HTML.</small></span><em>HTML</em></label>
+          <label class="week-item"><input type="checkbox" data-week="2"><span><b>Week 02 · CSS & layout</b><small>Selectors, box model, Flexbox, Grid, typography and responsive design.</small></span><em>CSS</em></label>
+          <label class="week-item"><input type="checkbox" data-week="3"><span><b>Week 03 · Accessibility & UI</b><small>Semantic structure, keyboard access, forms and a mobile-first landing page.</small></span><em>BUILD</em></label>
+        </div><div class="stage-foot"><span>Outcome: responsive multi-page website</span><span class="stage-progress" data-stage-progress="1">0 / 3</span></div></article>
+        <article class="stage-card" data-stage="2"><div class="stage-top"><span class="stage-number">02</span><span class="stage-duration">WEEKS 04—07</span><span class="stage-status">INTERACTIVITY</span></div><h3>JavaScript & browser APIs</h3><p>Move beyond static pages and write reliable code that responds to users.</p><div class="week-list">
+          <label class="week-item"><input type="checkbox" data-week="4"><span><b>Week 04 · JavaScript essentials</b><small>Variables, types, operators, conditions, loops and functions.</small></span><em>JS</em></label>
+          <label class="week-item"><input type="checkbox" data-week="5"><span><b>Week 05 · Data & modern syntax</b><small>Arrays, objects, destructuring, modules, map, filter and reduce.</small></span><em>JS</em></label>
+          <label class="week-item"><input type="checkbox" data-week="6"><span><b>Week 06 · DOM & events</b><small>DOM updates, event handling, validation and localStorage.</small></span><em>DOM</em></label>
+          <label class="week-item"><input type="checkbox" data-week="7"><span><b>Week 07 · Async JavaScript</b><small>Promises, async/await, fetch, JSON and API error states.</small></span><em>API</em></label>
+        </div><div class="stage-foot"><span>Outcome: interactive app using a public API</span><span class="stage-progress" data-stage-progress="2">0 / 4</span></div></article>
+        <article class="stage-card" data-stage="3"><div class="stage-top"><span class="stage-number">03</span><span class="stage-duration">WEEKS 08—11</span><span class="stage-status">FRONTEND</span></div><h3>React & TypeScript</h3><p>Build component-driven applications with predictable state and typed data.</p><div class="week-list">
+          <label class="week-item"><input type="checkbox" data-week="8"><span><b>Week 08 · React fundamentals</b><small>Components, JSX, props, rendering and project setup.</small></span><em>REACT</em></label>
+          <label class="week-item"><input type="checkbox" data-week="9"><span><b>Week 09 · State & interactions</b><small>useState, events, forms, lifting state and component composition.</small></span><em>STATE</em></label>
+          <label class="week-item"><input type="checkbox" data-week="10"><span><b>Week 10 · Effects & routing</b><small>useEffect, data fetching, loading states and client-side routing.</small></span><em>ROUTER</em></label>
+          <label class="week-item"><input type="checkbox" data-week="11"><span><b>Week 11 · TypeScript in React</b><small>Types, interfaces, props, unions and typed API responses.</small></span><em>TS</em></label>
+        </div><div class="stage-foot"><span>Outcome: typed React dashboard</span><span class="stage-progress" data-stage-progress="3">0 / 4</span></div></article>
+        <article class="stage-card" data-stage="4"><div class="stage-top"><span class="stage-number">04</span><span class="stage-duration">WEEKS 12—16</span><span class="stage-status">BACKEND</span></div><h3>Backend, APIs & databases</h3><p>Understand server-side logic, data persistence and secure authentication patterns.</p><div class="week-list">
+          <label class="week-item"><input type="checkbox" data-week="12"><span><b>Week 12 · Node.js & tooling</b><small>Node runtime, npm, environment variables and package scripts.</small></span><em>NODE</em></label>
+          <label class="week-item"><input type="checkbox" data-week="13"><span><b>Week 13 · REST APIs</b><small>HTTP methods, status codes, routing, validation and API design.</small></span><em>REST</em></label>
+          <label class="week-item"><input type="checkbox" data-week="14"><span><b>Week 14 · SQL & data modelling</b><small>Relational concepts, schema design, joins and parameterized queries.</small></span><em>SQL</em></label>
+          <label class="week-item"><input type="checkbox" data-week="15"><span><b>Week 15 · Authentication & security</b><small>Sessions, password hashing, authorization, OWASP basics and secrets.</small></span><em>SECURITY</em></label>
+          <label class="week-item"><input type="checkbox" data-week="16"><span><b>Week 16 · Full-stack integration</b><small>Connect frontend to backend, handle errors and persist user data.</small></span><em>BUILD</em></label>
+        </div><div class="stage-foot"><span>Outcome: full-stack CRUD application</span><span class="stage-progress" data-stage-progress="4">0 / 5</span></div></article>
+        <article class="stage-card" data-stage="5"><div class="stage-top"><span class="stage-number">05</span><span class="stage-duration">WEEKS 17—20</span><span class="stage-status">QUALITY</span></div><h3>Professional engineering</h3><p>Improve reliability, collaboration, maintainability and production readiness.</p><div class="week-list">
+          <label class="week-item"><input type="checkbox" data-week="17"><span><b>Week 17 · Git & collaboration</b><small>Branches, pull requests, merge conflicts and meaningful commits.</small></span><em>GIT</em></label>
+          <label class="week-item"><input type="checkbox" data-week="18"><span><b>Week 18 · Testing & debugging</b><small>Unit, integration and end-to-end testing; debugging workflows.</small></span><em>TEST</em></label>
+          <label class="week-item"><input type="checkbox" data-week="19"><span><b>Week 19 · Performance & accessibility</b><small>Core Web Vitals, asset optimization, WCAG principles and audits.</small></span><em>A11Y</em></label>
+          <label class="week-item"><input type="checkbox" data-week="20"><span><b>Week 20 · CI/CD & deployment</b><small>Build pipelines, environment configuration, logs and rollbacks.</small></span><em>DEPLOY</em></label>
+        </div><div class="stage-foot"><span>Outcome: tested and deployed application</span><span class="stage-progress" data-stage-progress="5">0 / 4</span></div></article>
+        <article class="stage-card" data-stage="6"><div class="stage-top"><span class="stage-number">06</span><span class="stage-duration">WEEKS 21—24</span><span class="stage-status">PORTFOLIO</span></div><h3>Portfolio & career launch</h3><p>Turn your skills into evidence: polished projects, documentation and interview practice.</p><div class="week-list">
+          <label class="week-item"><input type="checkbox" data-week="21"><span><b>Week 21 · Architecture & planning</b><small>Requirements, user stories, data flow and project milestones.</small></span><em>PLAN</em></label>
+          <label class="week-item"><input type="checkbox" data-week="22"><span><b>Week 22 · Capstone build</b><small>Build a real-world full-stack product with responsive UX.</small></span><em>BUILD</em></label>
+          <label class="week-item"><input type="checkbox" data-week="23"><span><b>Week 23 · Polish & documentation</b><small>Accessibility, tests, README, screenshots and deployment review.</small></span><em>SHIP</em></label>
+          <label class="week-item"><input type="checkbox" data-week="24"><span><b>Week 24 · Portfolio & interviews</b><small>Case studies, GitHub hygiene, CV, technical and behavioural practice.</small></span><em>CAREER</em></label>
+        </div><div class="stage-foot"><span>Outcome: job-ready portfolio foundation</span><span class="stage-progress" data-stage-progress="6">0 / 4</span></div></article>
+      </div>
+    </section>
+
+    <section class="playground-section" id="playground"><div class="shell playground-grid">
+      <div><div class="eyebrow">LEARN BY EXPERIMENTING</div><h2>Write code.<br><span class="gradient-text">See what happens.</span></h2><p class="section-copy">Try a small HTML, CSS and JavaScript example. The preview runs in a sandboxed iframe in your browser. It does not connect to a server or save your code.</p><div class="safe-note">🔒 Runs locally in an isolated preview frame. Do not paste secrets or sensitive information.</div></div>
+      <div class="playground-card"><div class="playground-head"><span><i></i><i></i><i></i> playground.html</span><button id="resetCode" type="button">Reset</button></div><label class="sr-only" for="codeInput">HTML code editor</label><textarea id="codeInput" spellcheck="false" aria-label="HTML code editor"><!doctype html>
+<html>
+<head>
+  <style>
+    body { font-family: system-ui; padding: 24px; }
+    h1 { color: #635bff; }
+    button { padding: 10px 16px; border: 0; border-radius: 8px; background: #635bff; color: white; }
+  </style>
+</head>
+<body>
+  <h1>Hello, developer!</h1>
+  <p>Change this code and run it.</p>
+  <button onclick="this.textContent='It works!'">Click me</button>
+</body>
+</html></textarea><div class="playground-actions"><span id="runStatus" aria-live="polite">Ready to run</span><button id="runCode" class="btn btn-primary" type="button">Run preview ▶</button></div><iframe id="codePreview" title="Code preview" sandbox="allow-scripts" srcdoc="<!doctype html><html><body style='font-family:system-ui;padding:24px;color:#172033'>Your preview will appear here.</body></html>"></iframe></div>
+    </div></section>
+
+    <section class="projects-section shell" id="projects"><div class="section-heading"><div><div class="eyebrow">BUILD YOUR PORTFOLIO</div><h2>Proof beats promises.</h2><p>Build these projects as you progress. Mark each one shipped when it is deployed and documented.</p></div></div>
+      <div class="project-grid">
+        <article class="project-card"><span class="project-index">PROJECT 01</span><div class="project-icon">▤</div><h3>Responsive business website</h3><p>Multi-page site with accessible navigation, service pages and contact form validation.</p><label><input type="checkbox" data-project="1"> Mark as shipped</label><small>HTML · CSS · Accessibility</small></article>
+        <article class="project-card"><span class="project-index">PROJECT 02</span><div class="project-icon">◷</div><h3>Task manager</h3><p>Create, edit, filter and persist tasks with a clean, keyboard-friendly interface.</p><label><input type="checkbox" data-project="2"> Mark as shipped</label><small>JavaScript · DOM · Storage</small></article>
+        <article class="project-card"><span class="project-index">PROJECT 03</span><div class="project-icon">⌕</div><h3>API-powered explorer</h3><p>Fetch external data and design thoughtful loading, empty and error states.</p><label><input type="checkbox" data-project="3"> Mark as shipped</label><small>Async JS · REST · JSON</small></article>
+        <article class="project-card"><span class="project-index">PROJECT 04</span><div class="project-icon">▦</div><h3>React analytics dashboard</h3><p>Reusable components, typed data, filters and responsive visual summaries.</p><label><input type="checkbox" data-project="4"> Mark as shipped</label><small>React · TypeScript</small></article>
+        <article class="project-card"><span class="project-index">PROJECT 05</span><div class="project-icon">⌘</div><h3>Full-stack booking app</h3><p>CRUD workflows, database persistence, validation and secure user access.</p><label><input type="checkbox" data-project="5"> Mark as shipped</label><small>Node · SQL · Auth</small></article>
+        <article class="project-card"><span class="project-index">PROJECT 06</span><div class="project-icon">✓</div><h3>Tested product app</h3><p>Add automated tests, error handling, accessibility and a deployment pipeline.</p><label><input type="checkbox" data-project="6"> Mark as shipped</label><small>Testing · CI/CD</small></article>
+        <article class="project-card"><span class="project-index">PROJECT 07</span><div class="project-icon">✧</div><h3>Personal developer portfolio</h3><p>Present three case studies with live demos, source links and clear outcomes.</p><label><input type="checkbox" data-project="7"> Mark as shipped</label><small>Portfolio · Documentation</small></article>
+        <article class="project-card featured-project"><span class="project-index">PROJECT 08 · CAPSTONE</span><div class="project-icon">↗</div><h3>Your own full-stack product</h3><p>Choose a real problem, validate the scope, build an MVP and deploy it publicly.</p><label><input type="checkbox" data-project="8"> Mark as shipped</label><small>End-to-end · Production mindset</small></article>
+      </div>
+    </section>
+
+    <section class="assessment-section"><div class="shell assessment-grid"><div><div class="eyebrow">QUICK KNOWLEDGE CHECK</div><h2>Check what<br>you understand.</h2><p class="section-copy">A short fundamentals quiz. Use it to spot gaps—not as a substitute for building projects.</p></div><div class="quiz-card" id="quizCard"><div class="quiz-meta"><span>QUESTION <b id="questionNumber">01</b> / 03</span><span id="quizScore">Score: 0</span></div><h3 id="questionText">What does semantic HTML primarily improve?</h3><div id="answerList" class="answer-list"><button data-answer="0" type="button">The website's download speed</button><button data-answer="1" type="button">The meaning and structure of content</button><button data-answer="2" type="button">The database connection</button></div><p id="quizFeedback" class="quiz-feedback" aria-live="polite">Choose one answer to continue.</p><button id="nextQuestion" class="btn btn-primary" type="button" disabled>Next question →</button></div></div></section>
+
+    <section class="closing shell"><div><div class="eyebrow">CONSISTENCY COMPOUNDS</div><h2>Build something real.<br><span class="gradient-text">Then make it better.</span></h2><p>Set a realistic weekly schedule, keep your code in Git, and deploy projects as soon as they are useful.</p></div><a href="deploy-guide.html" class="btn btn-primary">Read the deployment guide ↗</a></section>
+  </main>
+  <footer class="footer"><div class="shell footer-inner"><a class="brand" href="index.html"><span class="brand-mark">W</span><span>WEB<span class="brand-muted">ACADEMY</span></span></a><span>Independent learning resource · Built for practice</span><a href="course-guide.html">Full learning guide</a></div><p class="footer-note">Progress is stored locally in this browser. This static learning kit does not provide accounts, cloud sync, server-side grading or accredited certification.</p></footer>
+</body>
+</html>
